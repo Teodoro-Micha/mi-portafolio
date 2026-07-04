@@ -1,0 +1,82 @@
+/*VARIABLES GLOBALES*/
+:root{
+    --color-principal: #0f4c81;
+    --color-secundario: #2a6f97;
+    --color-fondo-web: #f8f9fa;    
+    --color-fondo-bloque: #ffffff; 
+    --color-texto-negro: #1a1a1a;  
+    --color-texto-gris: #5a626a;   
+    --color-borde: #e9ecef;
+    --fuente-titulos: 'Helvetica Neue', Arial, sans-serif;
+    --fuente-cuerpo: 'Georgia', serif; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--color-fondo-web);
+    color: var(--color-texto-negro);
+    font-family: var(--fuente-cuerpo);
+    line-height: 1.8;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+
+/*ESTILOS GENERALES Y RESET*/
+a{
+    color: var(--color-secundario);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover{
+    color: var(--color-principal);
+    text-decoration: underline;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background-color: var(--color-borde);
+    margin: 40px 0;
+}
+
+
+/*CABECERA (Portada de la Tesina)*/
+header{
+    max-width: 850px;
+    margin: 60px auto 40px auto;
+    text-align: center;
+    background-color: var(--color-fondo-bloque);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid var(--color-principal);
+}
+
+header h1{
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    color: var(--color-texto-negro);
+    margin: 20px 0;
+    line-height: 1.3;
+}
+
+header p{
+    font-family: var(--fuente-titulos);
+    color: var(--color-texto-gris);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+header strong{
+    color: var(--color-texto-negro);
+}
+
+
+/*ESTRUCTURA DE CONTENEDORES (Cuerpo del texto)*/
