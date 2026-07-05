@@ -89,32 +89,39 @@ def rechercher_contact():
         else:
             element.setHidden(True)
 
-#HASTA AQUI HE CORREGIDO, POR AHORA.
+
 
 def charger_contacts():
-        with open("contacts.txt", "r", encoding="utf-8") as f:
+        #Si el archivo contacts.txt no existe todavía, que el programa no haga nada más (evita que el programa se rompa intentando abrir un archivo que no está)
+        if not os.path.exists("contacts.txt"):
+            return
 
+        with open("contacts.txt", "r", encoding="utf-8") as f:
             for ligne in f:
-                listeContacts.addItem(ligne.strip())
+                if ligne.strip():
+                    listeContacts.addItem(ligne.strip())
         
 
 
 
 app = QApplication(sys.argv)
-
 fenetre = QWidget()
 fenetre.setWindowTitle("Carnet de Contacts")
-fenetre.resize(200, 150)
+#Cambio el tamaño porque considero que el nuevo es el adecuado, para evitar que se amontone todo. 
+fenetre.resize(450, 600)
 
 title = QLabel("📒 CARNET DE CONTACTS")
-
 title.setObjectName("title")
+#Para centrar el texto de este titulo:
+title.setAlignment(Qt.AlignCenter)
 
 txtNom = QLineEdit()
-txtNom.setPlaceholderText("Nom complet")
+#Para recordarle al usuario que este campo es obligatorio rellenarlo, añado el *:
+txtNom.setPlaceholderText("Nom complet *")
 
 txtTel = QLineEdit()
-txtTel.setPlaceholderText("Téléphone")
+#Para recordarle al usuario que este campo es obligatorio rellenarlo, añado el *:
+txtTel.setPlaceholderText("Téléphone *")
 
 txtEmail = QLineEdit()
 txtEmail.setPlaceholderText("Email")
@@ -122,15 +129,22 @@ txtEmail.setPlaceholderText("Email")
 btnAjouter = QPushButton("➕ Ajouter Contact")
 
 qlabelMessage = QLabel()
+#Para centra el texto del mensaje (error, confirmación, etc.), así consigo que se vea bien alineado con el resto del formulario:
+qlabelMessage.setAlignment(Qt.AlignCenter)
+
 txtRecherche = QLineEdit()
 txtRecherche.setPlaceholderText("🔍 Rechercher un contact...")
 
 listeContacts = QListWidget()
 
 
-
 btnSupprimer = QPushButton("🗑 Supprimer")
+#Para poderle dar un estilo personalizado en CSS a este botón:
+btnSupprimer.setObjectName("btnSupprimer")
+
 btnQuitter = QPushButton("❌ Quitter")
+#Para poderle dar un estilo personalizado en CSS a este botón:
+btnQuitter.setObjectName("btnQuitter")
 
 
 
@@ -144,7 +158,6 @@ formLayout.addWidget(txtTel)
 formLayout.addWidget(txtEmail)
 formLayout.addWidget(btnAjouter)
 formLayout.addWidget(qlabelMessage)
-
 formCard.setLayout(formLayout)
 
 
@@ -162,30 +175,74 @@ mainLayout.addLayout(buttonsLayout)
 
 btnAjouter.clicked.connect(ajouter_contact)
 btnSupprimer.clicked.connect(supprimer_contact)
+#Para darle función al botón quitar, ya que seguía siendo un boton vació, simplemente visual. Ahora funcionará, cerrará la venta:
+btnQuitter.clicked.connect(fenetre.close)
 txtRecherche.textChanged.connect(rechercher_contact)
 
 fenetre.setStyleSheet("""
-    QFrame#card{
-                 background-color:red;     }
-    QWidget{
-        background-color:#f4f6f9;
-        font-family:'Segoe UI';
+    
+    QWidget {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
     }
-    QLabel#title{
-        font-size:34px;
-        font-weight:bold;
-        color:#2c3e50;
-        padding:20px;
+    QLabel#title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+        padding: 10px;
     }
+    
+    QFrame#card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px;
+    }
+    
+    QLineEdit {
+        padding: 8px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: white;
+    }
+    
+    QLineEdit:focus {
+        border: 1px solid #3498db;
+    }
+                      
+    QListWidget {
+        background: white;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 5px;
+    }
+                      
     QPushButton{
         background:#3498db;
         color:white;
         border:none;
-        border-radius:12px;
-        padding:15px;
-        font-size:18px;
+        border-radius:6px;
+        padding:10px;
         font-weight:bold;
-        min-height:25px;
+    }
+                      
+    QPushButton:hover {
+        background-color: #2980b9;
+    }
+                      
+    QPushButton#btnSupprimer {
+        background-color: #e74c3c;
+    }               
+    QPushButton#btnSupprimer:hover {
+        background-color: #c0392b;
+    }
+                      
+    QPushButton#btnQuitter {
+        background-color: #95a5a6;
+    }
+    QPushButton#btnQuitter:hover {
+        background-color: #7f8c8d;
     }
     
 """)
