@@ -17,6 +17,7 @@ from PyQt5.QtWidgets import (
 
 from PyQt5.QtCore import Qt
 
+#Función para limpiar todos los campos del formulario de una vez, en lugar de escribir .clear() para cada campo por separado.
 def reset_campos():
     txtNom.clear()
     txtTel.clear()
@@ -42,55 +43,53 @@ def ajouter_contact():
 
     listeContacts.addItem(str(contact))
 
-
     with open("contacts.txt", "a", encoding="utf-8") as f:
          f.write(contact + "\n")
 
-    f = open("contacts.txt", "a", encoding="utf-8")
-    f.write(str(contact) + "\n")
-    f.close()
+    qlabelMessage.setText("✅ Contact ajouté avec succès !")
+    qlabelMessage.setStyleSheet("color: #2ecc71; font-weight: bold;")
 
-    txtNom.clear()
-    txtTel.clear()
-    txtEmail.clear()
+    #Para dejar el formulario vacío y listo, evitando que el usuario tenga que borrar cada campo a mano antes de escribir un nuevo contacto. Volvemos a llamar a la función.
+    reset_campos
 
 
 def supprimer_contact():
 
-
     row = listeContacts.currentRow()
 
-
-    if row >= 0:
+    if row < 0:
+        QMessageBox.warning(fenetre, "Sélection", "Veuillez sélectionner un contact.")
+        return
+    
+    reponse = QMessageBox.question(
+        fenetre,
+        "confirmation",
+        "Êtes-vous sûr de vouloir supprimer ce contact ?",
+        QMessageBox.OUI | QMessageBox.NON
+    )
+    if reponse == QMessageBox.OUI:
         listeContacts.takeItem(row)
-
+        
+        #Despues de borrar el contacto, reescribimos el archivo con lo que queda en la lista visual
         with open("contacts.txt", "w", encoding="utf-8") as f:
             for i in range(listeContacts.count()):
-                f.write(
-                    listeContacts.item(i).text()
-                    + "\n"
-                )
-
+                f.write(listeContacts.item(i).text() + "\n")
+        
+        qlabelMessage.setText("🗑️ Contact supprimé.")
+        qlabelMessage.setStyleSheet("color: #e67e22; font-weight: bold;")
 
 
 def rechercher_contact():
-
-    QMessageBox.information(fenetre,"","")
-
-
-    texte = txtRecherche.text().lower()
-
-   
+    texte = txtRecherche.text().lower().strip()
 
     for i in range(listeContacts.count()):
-
         element = listeContacts.item(i)
-
         if texte in element.text().lower():
             element.setHidden(False)
         else:
             element.setHidden(True)
 
+#HASTA AQUI HE CORREGIDO, POR AHORA.
 
 def charger_contacts():
         with open("contacts.txt", "r", encoding="utf-8") as f:
