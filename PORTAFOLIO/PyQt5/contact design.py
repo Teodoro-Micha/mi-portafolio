@@ -1,6 +1,8 @@
 #El profesor nos dio este programa y nos encomendó perfeccionarlo y corregir los errores que tenga.
+#También encomendó añadir un boton "Actualizar (actualiser)", que actualice el carnet.
 
-import os
+import re #Me servirá para validad correos, con el formato internacional de los mismos.
+import os #Para que el programa interactue con los archivos del texto
 import sys
 from PyQt5.QtWidgets import (
     QApplication,
@@ -34,7 +36,16 @@ def ajouter_contact():
     if not nom or not tel:
 
         qlabelMessage.setText(" ⚠️ Le nom et le téléphone sont obligatoires.")
+        #Para darle forma y color al mensaje:
         qlabelMessage.setStyleSheet("color: #e74c3c; font-weight: bold;")
+        return
+    
+    patron_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    if email and not re.match(patron_email, email):
+        qlabelMessage.setText("⚠️ L'adresse email n'est pas valide.")
+        #Para darle forma y color al mensaje:
+        qlabelMessage.setStyleSheet("color: #e74c3c; font-weight: bold;")
+        #Para evitar que el programa no siga ejecutándose si el correo está, ponemos "return", porque si no, aunque el correo esté mal, seguirá ejecutándose y lo guardará en ese estado.
         return
 
     contact = {nom} - {tel}
@@ -47,6 +58,7 @@ def ajouter_contact():
          f.write(contact + "\n")
 
     qlabelMessage.setText("✅ Contact ajouté avec succès !")
+    #Para darle forma y color al mensaje:
     qlabelMessage.setStyleSheet("color: #2ecc71; font-weight: bold;")
 
     #Para dejar el formulario vacío y listo, evitando que el usuario tenga que borrar cada campo a mano antes de escribir un nuevo contacto. Volvemos a llamar a la función.
@@ -76,6 +88,7 @@ def supprimer_contact():
                 f.write(listeContacts.item(i).text() + "\n")
         
         qlabelMessage.setText("🗑️ Contact supprimé.")
+        #Para darle forma y color al mensaje:
         qlabelMessage.setStyleSheet("color: #e67e22; font-weight: bold;")
 
 
@@ -100,6 +113,15 @@ def charger_contacts():
             for ligne in f:
                 if ligne.strip():
                     listeContacts.addItem(ligne.strip())
+
+
+def actualiser_contacts():
+    listeContacts.clear()
+    txtRecherche.clear()
+    #Después de vaciar la lista visual, necesito que le programa vuelva a leer el archivo contacts.txt para rellenarlo con los datos actuales:
+    charger_contacts()
+    qlabelMessage.setText("🔄 Liste actualisée.")
+    qlabelMessage.setStyleSheet("color: #3498db; font-weight: bold;")
         
 
 
@@ -146,6 +168,8 @@ btnQuitter = QPushButton("❌ Quitter")
 #Para poderle dar un estilo personalizado en CSS a este botón:
 btnQuitter.setObjectName("btnQuitter")
 
+btnActualiser = QPushButton("🔄 Actualiser")
+btnActualiser.setObjectName("btnActualiser")
 
 
 formCard = QFrame()
@@ -162,6 +186,7 @@ formCard.setLayout(formLayout)
 
 
 buttonsLayout = QHBoxLayout()
+buttonsLayout.addWidget(btnActualiser)
 buttonsLayout.addWidget(btnSupprimer)
 buttonsLayout.addWidget(btnQuitter)
 
@@ -175,6 +200,7 @@ mainLayout.addLayout(buttonsLayout)
 
 btnAjouter.clicked.connect(ajouter_contact)
 btnSupprimer.clicked.connect(supprimer_contact)
+btnActualiser.clicked.connect(actualiser_contacts)
 #Para darle función al botón quitar, ya que seguía siendo un boton vació, simplemente visual. Ahora funcionará, cerrará la venta:
 btnQuitter.clicked.connect(fenetre.close)
 txtRecherche.textChanged.connect(rechercher_contact)
@@ -244,7 +270,14 @@ fenetre.setStyleSheet("""
     QPushButton#btnQuitter:hover {
         background-color: #7f8c8d;
     }
-    
+                      
+    QPushButton#btnActualiser {
+        background-color: #2ecc71;             
+    }
+    QPushButton#btnActualiser:hover {
+        background-color: #27ae60;
+    }
+                      
 """)
 charger_contacts()
 fenetre.setLayout(mainLayout)
