@@ -1,8 +1,8 @@
 #El profesor nos dio este programa y nos encomendó perfeccionarlo y corregir los errores que tenga.
 #También encomendó añadir un boton "Actualizar (actualiser)", que actualice el carnet.
 
-import re #Me servirá para validad correos, con el formato internacional de los mismos.
-import os #Para que el programa interactue con los archivos del texto
+
+import os #Para que el programa interactue con los archivos del ordenador.
 import sys
 from PyQt5.QtWidgets import (
     QApplication,
@@ -34,12 +34,11 @@ def ajouter_contact():
     email = txtEmail.text().strip()
 
     if not nom or not tel:
-
         qlabelMessage.setText(" ⚠️ Le nom et le téléphone sont obligatoires.")
-        #Para darle forma y color al mensaje:
         qlabelMessage.setStyleSheet("color: #e74c3c; font-weight: bold;")
         return
     
+    import re #Me servirá para validar correos, con el formato internacional de los mismos.
     patron_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     if email and not re.match(patron_email, email):
         qlabelMessage.setText("⚠️ L'adresse email n'est pas valide.")
@@ -48,21 +47,21 @@ def ajouter_contact():
         #Para evitar que el programa no siga ejecutándose si el correo está, ponemos "return", porque si no, aunque el correo esté mal, seguirá ejecutándose y lo guardará en ese estado.
         return
 
-    contact = {nom} - {tel}
+    contact_str = f"{nom} - {tel}"
     if email:
-        contact += f" - {email}"
+        contact_str += f" - {email}"
 
-    listeContacts.addItem(str(contact))
+    listeContacts.addItem(contact_str)
 
     with open("contacts.txt", "a", encoding="utf-8") as f:
-         f.write(contact + "\n")
+         f.write(contact_str + "\n")
 
     qlabelMessage.setText("✅ Contact ajouté avec succès !")
     #Para darle forma y color al mensaje:
     qlabelMessage.setStyleSheet("color: #2ecc71; font-weight: bold;")
 
     #Para dejar el formulario vacío y listo, evitando que el usuario tenga que borrar cada campo a mano antes de escribir un nuevo contacto. Volvemos a llamar a la función.
-    reset_campos
+    reset_campos()
 
 
 def supprimer_contact():
