@@ -65,7 +65,6 @@ def ajouter_contact():
 
 
 def supprimer_contact():
-
     row = listeContacts.currentRow()
 
     if row < 0:
@@ -76,12 +75,12 @@ def supprimer_contact():
         fenetre,
         "confirmation",
         "Êtes-vous sûr de vouloir supprimer ce contact ?",
-        QMessageBox.OUI | QMessageBox.NON
+        QMessageBox.Yes | QMessageBox.No
     )
-    if reponse == QMessageBox.OUI:
+    if reponse == QMessageBox.Yes:
         listeContacts.takeItem(row)
         
-        #Despues de borrar el contacto, reescribimos el archivo con lo que queda en la lista visual
+        #Despues de borrar el contacto, reescribimos el archivo con lo que queda en la lista visual:
         with open("contacts.txt", "w", encoding="utf-8") as f:
             for i in range(listeContacts.count()):
                 f.write(listeContacts.item(i).text() + "\n")
