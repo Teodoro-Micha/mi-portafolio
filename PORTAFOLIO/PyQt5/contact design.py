@@ -17,7 +17,9 @@ from PyQt5.QtWidgets import (
     QMessageBox
 )
 
-from PyQt5.QtCore import Qt
+#Me he dado cuenta haciendo otras pruebas, que el campo del telefono, acepta letras, por eso hago estas modificaciones, para impedirlo, los números de teléfono, no contienen letras:
+from PyQt5.QtCore import QRegExp, Qt
+from PyQt5.QtGui import QRegExpValidator
 
 #Función para limpiar todos los campos del formulario de una vez, en lugar de escribir .clear() para cada campo por separado.
 def reset_campos():
@@ -142,6 +144,12 @@ txtNom.setPlaceholderText("Nom complet *")
 txtTel = QLineEdit()
 #Para recordarle al usuario que este campo es obligatorio rellenarlo, añado el *:
 txtTel.setPlaceholderText("Téléphone *")
+
+# Para que solo permita números (0-9), el signo + y espacios:
+règle_téléphone = QRegExp(r"^[0-9+\s]*$")
+#Con este validador, será imposible poner una letra en el campo de telefono:
+validateur_tel = QRegExpValidator(règle_téléphone, txtTel)
+txtTel.setValidator(validateur_tel)
 
 txtEmail = QLineEdit()
 txtEmail.setPlaceholderText("Email")
