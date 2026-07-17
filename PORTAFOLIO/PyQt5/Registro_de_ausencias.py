@@ -52,6 +52,13 @@ class Registro_Ausencias_App(QWidget):
         organizador_principal.addWidget(self.boton_guardar)
         organizador_principal.addWidget(self.tabla)
         organizador_principal.addWidget(self.boton_calcular)
+        organizador_principal.addWidget(self.etiqueta_total)
+        organizador_principal.addWidget(self.etiqueta_top)
+
+        self.setLayout(organizador_principal)
+
+
+        # Conectamos los Botones a las Funciones:
 
 
 
