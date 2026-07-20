@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature en ligne - Offre de stage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Candidature en ligne</h1>
+        <p>Rejoignez nos équipes et boostez votre carrière avec un stage sur mesure.</p>
+    </header>
+
+    <main class="main-content">
+        <form action="#" method="POST" class="application-form" onsubmit="return verifierCandidature(event)"></form>
+            
+            <!-- Fieldset 1-->
+            <fieldset>
+                <legend>Informations Personnelles</legend>
+                
+                <div class="form-group">
+                    <label for="nom">Nom complet :</label>
+                    <input type="text" id="nom" name="nom" required placeholder="Ex. Teodoro Micha">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresse e-mail :</label>
+                    <input type="email" id="email" name="email" required placeholder="Ex. Teodoromica@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="tel" id="telephone" name="telephone" placeholder="Ex. 0622917139">
+                </div>
+            </fieldset>
+
+            <!-- Fieldset 2 -->
+            <fieldset>
+                <legend>Détails de la Candidature</legend>
+                
+                <div class="form-group">
+                    <label for="domaine">Domaine du stage :</label>
+                    <select id="domaine" name="domaine" required>
+                        <option value="">Sélectionnez un domaine</option>
+                        <option value="developpement">Développement Web / Informatique</option>
+                        <option value="marketing">Marketing Digital / Communication</option>
+                        <option value="design">Design Graphique / UI-UX</option>
+                        <option value="rh">Ressources Humaines</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="duree">Durée souhaitée :</label>
+                    <select id="duree" name="duree" required>
+                        <option value="2-mois">2 mois (Stage court)</option>
+                        <option value="4-mois">4 mois</option>
+                        <option value="6-mois">6 mois (Stage de fin d'études)</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <!-- Fieldset 3 -->
+            <fieldset>
+                <legend>Documents & Message</legend>
+                
+                <div class="form-group">
+                    <label for="cv">Curriculum Vitae (CV) :</label>
+                    <input type="file" id="cv" name="cv" required accept=".pdf,.doc,.docx">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Lettre de motivation :</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de vous et de vos motivations..."></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="certif" name="certif">
+                    <label for="certif" class="label-inline">Je certifie que toutes les informations fournies sont exactes.</label>
+                </div>
+            </fieldset>
+
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Envoyer la candidature</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer class="main-footer">
+        <p><strong>Teodoro Micha ST</strong></p>
+        <p>&copy; 2026 Tous droits réservés.</p>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+

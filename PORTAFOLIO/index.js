@@ -22,6 +22,4 @@ formulario.addEventListener("submit", function(Evento) {
 
     alert("Gracias, he recibido tu mensaje");
 
-
-
 });
