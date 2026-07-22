@@ -10,39 +10,44 @@
 <body>
 
     <header class="main-header">
-        <h1>Candidature en ligne</h1>
-        <p>Rejoignez nos équipes et boostez votre carrière avec un stage sur mesure.</p>
+        <h1>Candidature en ligne - Offre de stage</h1>
+        <p>Remplissez le formulaire ci-dessous pour envoyer votre demande de stage.</p>
     </header>
 
     <main class="main-content">
         <form action="#" method="POST" class="application-form" onsubmit="return verifierCandidature(event)"></form>
             
             <!-- Fieldset 1-->
-            <fieldset>
-                <legend>Informations Personnelles</legend>
+            <fieldset class="les-fieldset">
+                <legend class="les-legend">Profil du candidat</legend>
                 
                 <div class="form-group">
-                    <label for="nom">Nom complet :</label>
-                    <input type="text" id="nom" name="nom" required placeholder="Ex. Teodoro Micha">
+                    <label class="label-données" for="nom">Nom* </label>
+                    <input type="text" id="nom" name="nom" required placeholder="Ex. NZO NCHAMA">
+                </div>
+
+                <div class="form-group">
+                    <label class="label-données" for="nom">Prénom* </label>
+                    <input type="text" id="prenom" name="prenom" required placeholder="Ex. Teodoro Micha">
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Adresse e-mail :</label>
+                    <label class="label-données" for="email">Email* </label>
                     <input type="email" id="email" name="email" required placeholder="Ex. Teodoromica@gmail.com">
                 </div>
                 
                 <div class="form-group">
-                    <label for="telephone">Téléphone :</label>
+                    <label class="label-données" for="telephone">Téléphone </label>
                     <input type="tel" id="telephone" name="telephone" placeholder="Ex. 0622917139">
                 </div>
             </fieldset>
 
             <!-- Fieldset 2 -->
-            <fieldset>
-                <legend>Détails de la Candidature</legend>
+            <fieldset class="les-fieldset">
+                <legend class="les-legend">Information sur le stage</legend>
                 
                 <div class="form-group">
-                    <label for="domaine">Domaine du stage :</label>
+                    <label class="label-données" for="domaine">Département </label>
                     <select id="domaine" name="domaine" required>
                         <option value="">Sélectionnez un domaine</option>
                         <option value="developpement">Développement Web / Informatique</option>
@@ -52,19 +57,28 @@
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label for="duree">Durée souhaitée :</label>
-                    <select id="duree" name="duree" required>
-                        <option value="2-mois">2 mois (Stage court)</option>
-                        <option value="4-mois">4 mois</option>
-                        <option value="6-mois">6 mois (Stage de fin d'études)</option>
-                    </select>
+                <div class="form-group" role="radiogroup" aria-required="true">
+                    <label for="duree">Durée </label>
+                    <div class="duree-radio">
+                        <label class="label-radio">
+                            <input type="radio" name="duree" value="1-mois" required>
+                            <span>1 mois</span>
+                        </label>
+                        <label class="label-radio">
+                            <input type="radio" name="duree" value="2-mois" required>
+                            <span>2 mois</span>
+                        </label>
+                        <label class="label-radio">
+                            <input type="radio" name="duree" value="3-mois" required>
+                            <span>3 mois</span>
+                        </label>
+                    </div>
                 </div>
             </fieldset>
 
             <!-- Fieldset 3 -->
-            <fieldset>
-                <legend>Documents & Message</legend>
+            <fieldset class="les-fieldset">
+                <legend class="les-legend">Validation et envoi</legend>
                 
                 <div class="form-group">
                     <label for="cv">Curriculum Vitae (CV) :</label>
@@ -72,7 +86,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Lettre de motivation :</label>
+                    <label class="label-données" for="message">Lettre de motivation :</label>
                     <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de vous et de vos motivations..."></textarea>
                 </div>
 
@@ -84,7 +98,9 @@
 
             
             <div class="form-actions">
-                <button type="submit" class="btn-submit">Envoyer la candidature</button>
+                <button type="submit" class="boton-submit">Réinitialiser</button>
+                <button type="submit" class="boton-submit">Envoyer la candidature</button>
+                
             </div>
 
         </form>
