@@ -53,14 +53,13 @@ body {
 .les-fieldset {
     border-radius: 8px;
     text-align: start;
+    
 }
 
 .les-legend {
     margin-left: 20px;
     padding: 0 8px;
 }
-
-
 
 .application-form fieldset {
     border: 1px solid #cbd5e1;
@@ -74,8 +73,27 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
-    
 }
+
+.form-group.checkbox-group {
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 1px;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.form-group.checkbox-group .label-inline {
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+
 
 .form-group label {
     width: 180px; /* Largeur fixe pour l'alignement */
@@ -175,7 +193,7 @@ body {
         text-align: center; 
     }
     
-    .btn-submit {
+    .boton-submit {
         width: 100%;
     }
 }
