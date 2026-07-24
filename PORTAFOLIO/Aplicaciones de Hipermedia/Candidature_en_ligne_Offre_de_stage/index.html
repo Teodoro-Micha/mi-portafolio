@@ -15,7 +15,7 @@
     </header>
 
     <main class="main-content">
-        <form action="#" method="POST" class="application-form" onsubmit="return verifierCandidature(event)"></form>
+        <form action="#" method="GET" class="application-form" onsubmit="return verifierCandidature(event)">
             
             <!-- Fieldset 1-->
             <fieldset class="les-fieldset">
@@ -38,7 +38,7 @@
                 
                 <div class="form-group">
                     <label class="label-données" for="telephone">Téléphone </label>
-                    <input type="tel" id="telephone" name="telephone" placeholder="Ex. 0622917139">
+                    <input type="tel" id="tel" name="telephone" placeholder="Ex. 0622917139">
                 </div>
             </fieldset>
 
@@ -98,9 +98,8 @@
 
             
             <div class="form-actions">
-                <button type="submit" class="boton-submit">Réinitialiser</button>
-                <button type="submit" class="boton-submit">Envoyer la candidature</button>
-                
+                <button id="boton_reinitialiser" type="submit" class="boton-submit">Réinitialiser</button>
+                <button id="boton_envoyer" type="submit" class="boton-submit">Envoyer la candidature</button>
             </div>
 
         </form>
