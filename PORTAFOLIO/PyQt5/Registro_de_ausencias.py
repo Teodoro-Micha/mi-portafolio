@@ -59,6 +59,41 @@ class Registro_Ausencias_App(QWidget):
 
 
         # Conectamos los Botones a las Funciones:
+        self.boton_guardar.clicked.connect(self.guardar_alumno)
+        self.boton_calcular.clicked.connect(self.calcular_resultados)
+
+
+    def guardar_alumno(self):
+        nombre_crudo = self.texto_nombre.text().strip()
+        faltas_crudas = self.texto_faltas.text().strip()
+
+        # Ponemos validación para evitar campos vacíos:
+        if not nombre_crudo or not faltas_crudas:
+            QMessageBox.warning(self, "Campos vacíos", "Por favor, rellena ambos campos.")
+            return
+
+        nombre = nombre_crudo.capitalize()
+
+        try:
+            faltas = int(faltas_crudas)
+        except ValueError:
+            QMessageBox.critical(self, "Error de tipo", "El número de faltas debe ser un número entero.")
+            return
+
+        self.registro_faltas[nombre] = faltas
+
+        # Actualizamos la tabla:
+        fila = self.tabla.rowCount()
+        self.tabla.insertRow(fila)
+        self.tabla.setItem(fila, 0, QTableWidgetItem(nombre))
+        self.tabla.setItem(fila, 1, QTableWidgetItem(str(faltas)))
+
+        self.texto_nombre.clear()
+        self.texto_text = self.texto_faltas.clear()
+        self.texto_nombre.setFocus()
+
+
+    def calcular_resultados(self):
 
 
 
