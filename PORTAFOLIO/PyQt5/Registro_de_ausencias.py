@@ -94,17 +94,17 @@ class Registro_Ausencias_App(QWidget):
 
 
     def calcular_resultados(self):
-        if not self.registro_faltas:
+        if not self.Registro_faltas:
             QMessageBox.information(self, "Sin datos", "Introduce al menos un alumno primero.")
             return
         
-        total_faltas_clase = sum(self.registro_faltas.values())
+        total_faltas_clase = sum(self.Registro_faltas.values())
 
-        max_faltas = max(self.registro_faltas.values())
+        max_faltas = max(self.Registro_faltas.values())
 
 
         alumnos_mas_faltas = []
-        for alumno, faltas in self.registro_faltas.items():
+        for alumno, faltas in self.Registro_faltas.items():
             if faltas == max_faltas:
                 alumnos_mas_faltas.append(alumno)
 
