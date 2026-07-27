@@ -12,7 +12,7 @@ class Registro_Ausencias_App(QWidget):
 
     def init_ui(self):
         # Configuramos la Ventana Principal:
-        self.windowTitle("Control de Asistencia")
+        self.setWindowTitle("Control de Asistencia")
         self.resize(450, 500)
 
         self.etiqueta_nombre = QLabel("Nombre del Alumno:")
@@ -29,7 +29,7 @@ class Registro_Ausencias_App(QWidget):
         # Mostramos alumnos introducidos:
         self.tabla = QTableWidget()
         self.tabla.setColumnCount(2)
-        self.tabla.setHorizontalHeader(["ALUMNO", "FALTAS"])
+        self.tabla.setHorizontalHeaderLabels(["ALUMNO", "FALTAS"])
         self.tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
 
@@ -80,7 +80,7 @@ class Registro_Ausencias_App(QWidget):
             QMessageBox.critical(self, "Error de tipo", "El número de faltas debe ser un número entero.")
             return
 
-        self.registro_faltas[nombre] = faltas
+        self.Registro_faltas[nombre] = faltas
 
         # Actualizamos la tabla:
         fila = self.tabla.rowCount()
@@ -94,6 +94,30 @@ class Registro_Ausencias_App(QWidget):
 
 
     def calcular_resultados(self):
+        if not self.registro_faltas:
+            QMessageBox.information(self, "Sin datos", "Introduce al menos un alumno primero.")
+            return
+        
+        total_faltas_clase = sum(self.registro_faltas.values())
+
+        max_faltas = max(self.registro_faltas.values())
+
+
+        alumnos_mas_faltas = []
+        for alumno, faltas in self.registro_faltas.items():
+            if faltas == max_faltas:
+                alumnos_mas_faltas.append(alumno)
+
+        nombre_top = ", ".join(alumnos_mas_faltas)
+
+        self.etiqueta_total.setText(f"Cantidad total de faltas en la clase: {total_faltas_clase}")
+        self.etiqueta_top.setText(f"Los alumnos con más faltas son: {nombre_top} (con {max_faltas} faltas)")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    ventana = Registro_Ausencias_App()
+    ventana.show()
+    sys.exit(app.exec_())
 
 
 
