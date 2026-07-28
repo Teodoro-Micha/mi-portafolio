@@ -217,6 +217,11 @@ em {
     background-color: #ffffff;
     padding: 5px;
     margin: 0 0 15px 15px;
+    transition: transform 0.3s ease;
+}
+
+#experiencia img:hover {
+    transform: scale(1.05);
 }
 
 #experiencia::after {
@@ -306,4 +311,30 @@ footer {
 
 footer p {
     color: #ffffff
+}
+
+
+/* Si el ancho de la pantalla es 600px o menos: */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    #experiencia img {
+        float: none;
+        display: block;
+        margin: 10px auto;
+    }
 }

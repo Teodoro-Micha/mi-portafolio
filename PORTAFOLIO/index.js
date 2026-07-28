@@ -1,3 +1,44 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const formulario = document.getElementById('formulario-contacto');
+    const inputsTexto = formulario.querySelectorAll('input[type="text"]');
+
+    function capitalizarPalabras(texto) {
+        return texto.toLowerCase().replace(/(?:^|\s)\S/g, function (a) {
+            return a.toUpperCase();
+        })
+    }
+
+    function filtrarSoloLetras(texto) {
+        return texto.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    }
+
+
+    inputsTexto.forEach(input => {
+        // Bloqueamos y filtramos caracteres no permitidos mientras el usuario escribe:
+        input.addEventListener("input", (suceso) => {
+            const valorOriginal = suceso.target.value;
+            const valorFiltrado = filtrarSoloLetras(valorOriginal);
+
+            if (valorOriginal !== valorFiltrado){
+            suceso.target.value = valorFiltrado;
+            }
+        });
+
+        // Si sacamos el foco, que la primera letra aparezca en mayúscula:
+        input.addEventListener("blur", (suceso) => {
+            suceso.target.value = capitalizarPalabras(suceso.target.value.trim());
+        });
+    });
+
+    //RESULTADOS AL ENVIAR:
+    formulario.addEventListener("submit", (suceso) => {
+        let hayErrores = false;
+    })
+
+})
+
+
+
 // Buscamos el formulario en el HTML usando su ID:
 const formulario = document.getElementById("formulario-contacto");
 
@@ -23,3 +64,4 @@ formulario.addEventListener("submit", function(Evento) {
     alert("Gracias, he recibido tu mensaje");
 
 });
+
