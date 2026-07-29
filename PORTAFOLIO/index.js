@@ -33,9 +33,38 @@ document.addEventListener('DOMContentLoaded', () => {
     //RESULTADOS AL ENVIAR:
     formulario.addEventListener("submit", (suceso) => {
         let hayErrores = false;
-    })
 
-})
+        // Validamos que los campos de texto no estén vacíos o solo con espacios:
+        inputsTexto.forEach(input => {
+            const valorLimpio = input.value.trim();
+
+            if (valorLimpio === '') {
+                hayErrores = true;
+                marcarCampoInvalido(input, 'Este campo no puede estar vacío.');
+            } else {
+                limpiarErrorCampo(input);
+                input.value = capitalizarPalabras(valorLimpio);
+            }
+        });
+
+        // Si hay errores de validación,  evitamos el envío:
+        if (hayErrores) {
+            suceso.preventDefault();
+        }
+    });
+
+    // Mostramos visualmente el input con error:
+    function marcarCampoInvalido(input, mensaje) {
+        input.style.borderColor = '#ef4444';
+        input.focus();
+    }
+
+    // Mostramos el estilo original si el input es valido:
+    function limpiarErrorCampo(input) {
+        input.style.borderColor = '';
+    }
+
+});
 
 
 
