@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const formulario = document.getElementById('formulario-contacto');
-    const inputsTexto = formulario.querySelectorAll('input[type="text"]');
+    const formulario = document.getElementById("formulario-contacto");
+    const inputNombre = document.getElementById("nombre");
+    const inputMensaje = document.getElementById("mensaje");
+    const inputsTexto = [inputNombre];
+    const inputCorreo = document.getElementById("correo");
+
 
     function capitalizarPalabras(texto) {
         return texto.toLowerCase().replace(/(?:^|\s)\S/g, function (a) {
@@ -32,25 +36,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //RESULTADOS AL ENVIAR:
     formulario.addEventListener("submit", (suceso) => {
-        let hayErrores = false;
+        suceso.preventDefault();
+        
+        const nombreValido = inputNombre.value.trim();
+        const mensajeValido = inputMensaje.value.trim();
 
         // Validamos que los campos de texto no estén vacíos o solo con espacios:
-        inputsTexto.forEach(input => {
-            const valorLimpio = input.value.trim();
-
-            if (valorLimpio === '') {
-                hayErrores = true;
-                marcarCampoInvalido(input, 'Este campo no puede estar vacío.');
-            } else {
-                limpiarErrorCampo(input);
-                input.value = capitalizarPalabras(valorLimpio);
-            }
-        });
-
-        // Si hay errores de validación,  evitamos el envío:
-        if (hayErrores) {
-            suceso.preventDefault();
+        if (nombreValido === '') {
+            alert('Por favor, ingresa tu nombre.');
+            inputNombre.focus();
+            return;
         }
+
+        const correoValido = inputCorreo.value.trim();
+        if (correoValido === '') {
+            alert("Por favor, ingresa tu correo electrónico.");
+            inputCorreo.focus();
+            return;
+        }
+
+        if (!esCorreoValido(correoValido)) {
+            alert("Por favor, ingresa un correo electrónico válido (ejemplo: usuario@dominio.com).");
+            inputCorreo.focus();
+            return;
+        }
+
+        // Que no sea posible aceptar menos de 10 caracteres:
+        if (mensajeValido.length < 10) {
+            alert('El mensaje es demasiado corto. Debe tener al menos 10 caracteres.');
+            inputMensaje.focus();
+            return;
+        }
+
+        // Si se cumplen todas las condiciones del formulario, se envía:
+        alert('¡Mensaje enviado con éxito!');
+        formulario.reset();
+        
     });
 
     // Mostramos visualmente el input con error:
@@ -64,33 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         input.style.borderColor = '';
     }
 
-});
-
-
-
-// Buscamos el formulario en el HTML usando su ID:
-const formulario = document.getElementById("formulario-contacto");
-
-// Creamos el "escuchador"; le decimos al programa que esté atento al evento '"submit":
-
-formulario.addEventListener("submit", function(Evento) {
-
-    // Para evitar que el navegador limpie el formulario antes de que el pueda leerlo:
-    Evento.preventDefault();
-
-    // Recogemos los datos que el usuario ha escrito:
-    const Datos = new FormData(formulario);
-
-    const Nombre = Datos.get("nombre");
-    const Email = Datos.get("correo");
-    const Mensaje = Datos.get("mensaje");
-
-    console.log("Formulario rellenado con éxito");
-    console.log("Nombre introducido:", Nombre)
-    console.log("Correo introducido:", Email);
-    console.log("Mensaje introducido:", Mensaje);
-
-    alert("Gracias, he recibido tu mensaje");
+    function esCorreoValido(correo) {
+    const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return patronCorreo.test(correo);
+    }
 
 });
+
+
+
 
