@@ -279,7 +279,7 @@ em {
 }
 
 #formulario-contacto button[type="submit"],
-#formulario-contacto button[type="button"] {
+#formulario-contacto button[type="reset"] {
     background-color: var(--color-negro-fondo);
     color: #ffffff;
     border: none;
@@ -291,7 +291,7 @@ em {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-#formulario-contacto button[type="button"]:hover,
+#formulario-contacto button[type="reset"]:hover,
 #formulario-contacto button[type="submit"]:hover {
     background-color: var(--color-azul-principal);
     transform: translateY(-2px);
