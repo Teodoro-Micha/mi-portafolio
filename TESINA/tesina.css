@@ -1,4 +1,4 @@
-/*VARIABLES GLOBALES*/
+/*VARIABLES GLOBALES: */
 :root{
     --color-principal: #0f4c81;
     --color-secundario: #2a6f97;
@@ -27,7 +27,7 @@ body{
 }
 
 
-/*ESTILOS GENERALES Y RESET*/
+/*ESTILOS GENERALES Y RESET: */
 a{
     color: var(--color-secundario);
     text-decoration: none;
@@ -47,7 +47,7 @@ hr{
 }
 
 
-/*CABECERA (Portada de la Tesina)*/
+/* CABECERA: */
 header{
     max-width: 850px;
     margin: 60px auto 40px auto;
@@ -79,4 +79,89 @@ header strong{
 }
 
 
-/*ESTRUCTURA DE CONTENEDORES (Cuerpo del texto)*/
+
+
+/* CUERPO DEL TEXTO: */
+main {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+section, article {
+    background-color: var(--color-fondo-bloque);
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Eliminamos padding extra cuando se anidan secciones: */
+article section {
+    padding: 20px 0 0 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+
+
+/* JERARQUÍA DE TÍTULOS: */
+h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-texto-negro);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--color-principal);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    color: var(--color-principal);
+}
+
+h3 {
+    font-size: 1.35rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+h4 {
+    font-size: 1.15rem;
+    color: var(--color-texto-gris);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+
+
+/* ÍNDICE: */
+nav#indice {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background-color: var(--color-fondo-bloque);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+nav#indice ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+nav#indice ul li {
+    margin-bottom: 12px;
+    font-family: var(--fuente-titulos);
+    font-size: 0.95rem;
+}
+
+nav#indice ul ul {
+    margin-top: 8px;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-borde);
+}
