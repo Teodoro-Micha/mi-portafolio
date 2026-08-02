@@ -35,11 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //RESULTADOS AL ENVIAR:
-    formulario.addEventListener("submit", (suceso) => {
+    formulario.addEventListener("submit", async (suceso) => {
         suceso.preventDefault();
         
         const nombreValido = inputNombre.value.trim();
         const mensajeValido = inputMensaje.value.trim();
+        const correoValido = inputCorreo.value.trim();
 
         // Validamos que los campos de texto no estén vacíos o solo con espacios:
         if (nombreValido === '') {
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const correoValido = inputCorreo.value.trim();
+        
         if (correoValido === '') {
             alert("Por favor, ingresa tu correo electrónico.");
             inputCorreo.focus();
@@ -68,11 +69,31 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Si se cumplen todas las condiciones del formulario, se envía:
-        alert('¡Mensaje enviado con éxito!');
-        formulario.reset();
+        
+        const formData = new FormData(formulario);
+
+        try {
+            const response = await fetch("https://formspree.io/f/xjgnqzpp", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "Accept": "application/json"
+            }
+            });
+
+        if (response.ok) {
+            alert('¡Mensaje enviado con éxito!');
+            formulario.reset();
+        } else {
+        alert('Hubo un problema al enviar el mensaje.');
+        }
+        } catch (error) {
+            alert("Error de conexión. Inténtalo de nuevo más tarde.");
+        }
         
     });
+
+
 
     // Mostramos visualmente el input con error:
     function marcarCampoInvalido(input, mensaje) {
