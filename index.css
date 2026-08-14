@@ -221,6 +221,13 @@ em {
     transform: scale(1.05);
 }
 
+#proyectos::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 
 /* EXPERIENCIA: */
 #experiencia img {
