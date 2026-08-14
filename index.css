@@ -207,6 +207,19 @@ em {
     text-decoration: none;
 }
 
+#proyectos img {
+    float: right;
+    border-radius: 8px;
+    border: 1px solid var(--color-gris-borde);
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 0 0 15px 15px;
+    transition: transform 0.3s ease;
+}
+
+#proyectos img:hover {
+    transform: scale(1.05);
+}
 
 
 /* EXPERIENCIA: */
