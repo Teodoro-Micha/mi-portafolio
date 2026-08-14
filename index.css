@@ -357,6 +357,12 @@ footer p {
         display: block;
         margin: 10px auto;
     }
+
+    #proyectos img {
+        float: none;
+        display: block;
+        margin: 10px auto;
+    }
 }
 
 
