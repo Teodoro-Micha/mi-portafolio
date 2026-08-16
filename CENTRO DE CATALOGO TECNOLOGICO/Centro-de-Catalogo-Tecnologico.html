@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación de Clima y Catálogo de Productos con Filtros y Buscador.">
+    <title>Tienda & Clima Hub</title>
+
+</head>
+<body>
+    <!-- Encabezado Principal: -->
+    <header class="cabecera-principal">
+        <div class="contenedor-cabecera">
+            <h1 class="titulo-marca">Tienda & clima</h1>
+
+            <!-- Widget del Clima: -->
+             <div class="widget-clima" id="widget-clima" aria-live="polite">
+                <span class="clima-ciudad" id="clima-ciudad">Cargando ubicación...</span>
+                <span class="clima-temperatura" id="clima-temperatura">°C</span>
+                <span class="clima-icono" id="clima-icono">🌤️</span>
+             </div>
+        </div>
+    </header>
+    <div class="contenedor-app">
+        <!-- Barra Lateral; Filtros de Productos y Búsqueda: -->
+        <aside class="barra-lateral-filtros" aria-label="Filtros de productos">
+            <h2 class="titulo-lateral">Filtros</h2>
+
+            <!-- Buscador: -->
+             <div class="grupo-filtro">
+                <label for="entrada-busqueda">Buscar producto:</label>
+                <input type="search" id="entrada-busqueda" placeholder="Ej. Camisa, Electrónica..." autocomplete="off">
+             </div>
+
+            <!-- Filtro por Categoría: -->
+            <div class="grupo-filtro">
+                <label for="selector-categoria">Categoría:</label>
+                <select id="selector-categoria">
+                    <option value="todos">Todas las categorías</option>
+                    <!-- Las categorías se cargan dinámicamente -->
+                </select>
+            </div>
+
+              <!-- Botón para limpiar filtros: -->
+               <button id="boton-limpiar-filtros" class="boton boton-secundario" type="button">Limpiar Filtros</button>
+        </aside>
+
+        <!-- Contenido Principal; Catálogo de Productos: -->
+        <main class="contenido-principal">
+            <section class="seccion-catalogo" aria-labelledby="titulo-catalogo">
+                <h2 id="titulo-catalogo" class="solo-lectura">Catálogo de Productos</h2>
+
+                <!-- Cargador: -->
+                <div id="cargador" class="contenedor-cargador" role="status" aria-live="polite">
+                    <div class="icono-carga"></div>
+                    <p>Cargando productos...</p>
+                </div>
+
+                 <!-- Mensaje de Error: -->
+                <div id="mensaje-error" class="contenedor-error oculto" role="alert">
+                    <p id="texto-error">No se encontraron productos que coincidan con tu búsqueda.</p>
+                </div>
+
+                <!-- Productos: -->
+                <div id="cuadricula-productos" class="cuadricula-productos" aria-live="polite">
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <!-- Plantilla para cada Producto: -->
+    <template id="plantilla-tarjeta-producto">
+        <article class="tarjeta-producto">
+            <div class="contenedor-imagen-producto">
+                <img src="" alt="" class="imagen-producto" loading="lazy">
+            </div>
+            <div class="informacion-producto">
+                <span class="producto-categoria">Categoría</span>
+                <h3 class="producto-titulo">Nombre del Producto</h3>
+                <p class="producto-precio">$0.00</p>
+                <button type="button" class="boton boton-primario boton-agregar-carrito">Añadir al carrito</button>
+            </div>
+        </article>
+    </template>
+    
+</body>
+</html>
