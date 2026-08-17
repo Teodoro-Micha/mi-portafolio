@@ -1,0 +1,399 @@
+:root {
+    --color-azul-oscuro: #0f172a;
+    --color-azul-medio: #1e3a8a;
+    --color-azul-principal: #2563eb;
+    --color-azul-suave: #e0f2fe;
+
+    --color-gris-fondo: #f1f5f9;
+    --color-gris-superficie: #ffffff;
+    --color-gris-borde: #cbd5e1;
+    --color-gris-texto-secundario: #64748b;
+    --color-gris-texto-principal: #334155;
+
+    --color-cristal-base: #00d2ff;
+    --color-cristal-medio: #0080ff;
+    --color-cristal-oscuro: #0052d4;
+    --color-cristal-hover: #38ef7d;
+    --color-cristal-sombra: rgba(0, 210, 255, 0.4);
+    --color-cristal-texto: #ffffff;
+
+    --fuente-principal: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --radio-borde: 12px;
+    --sombra-suave: 0 4px 12px rgba(15, 23, 42, 0.08);
+    --sombra-elevada: 0 8px 24px rgba(15, 23, 42, 0.15);
+    --transicion-rapida: all 0.3s ease;
+}
+
+
+
+/* RESETEO BASE Y TIPOGRAFÍA: */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-gris-fondo);
+    color: var(--color-gris-texto-principal);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Visibilidad para lectores de pantalla: */
+.solo-lectura {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.oculto {
+    display: none !important;
+}
+
+
+
+
+/* ENCABEZADO PRINCIPAL Y WIDGET CLIMA: */
+.cabecera-principal {
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    color: #ffffff;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.contenedor-cabecera {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.titulo-marca {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+/* Widget del Clima: */
+.widget-clima {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 1.25rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+.clima-ciudad {
+    font-size: 0.95rem;
+}
+
+.clima-temperatura {
+    font-size: 1.1rem;
+    color: var(--color-cristal-base);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+.clima-icono {
+    font-size: 1.4rem;
+}
+
+
+
+
+/* ESTRUCTURA PRINCIPAL Y CONTENEDOR APP: */
+.contenedor-app {
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
+}
+
+/* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o más: */
+@media (min-width: 768px) {
+    .contenedor-app {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        align-items: start;
+    }
+}
+
+
+
+
+
+/* BARRA LATERAL DE FILTROS: */
+.barra-lateral-filtros {
+    background-color: var(--color-gris-superficie);
+    border: 1px solid var(--color-gris-borde);
+    border-radius: var(--radio-borde);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.titulo-lateral {
+    font-size: 1.25rem;
+    color: var(--color-azul-oscuro);
+    border-bottom: 2px solid var(--color-azul-suave);
+    padding-bottom: 0.5rem;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grupo-filtro label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-gris-texto-principal);
+}
+
+.grupo-filtro input,
+.grupo-filtro select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-gris-borde);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: var(--color-gris-fondo);
+    color: var(--color-gris-texto-principal);
+    transition: var(--transicion-rapida);
+    min-height: 44px;
+}
+
+.grupo-filtro input:focus,
+.grupo-filtro select:focus {
+    outline: none;
+    border-color: var(--color-cristal-base);
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
+    background-color: #ffffff;
+}
+
+
+
+
+
+/* ESTILOS DE BOTONES: */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 48px; /* Tamaño accesible para móviles */
+    text-decoration: none;
+}
+
+.boton-primario {
+    background: linear-gradient(135deg, #00d2ff 0%, #0080ff 50%, #0052d4 100%);
+    color: var(--color-cristal-texto);
+    box-shadow: 0 4px 15px var(--color-cristal-sombra);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.boton-primario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.boton-primario:hover::before {
+    left: 100%;
+}
+
+.boton-primario:hover {
+    background: linear-gradient(135deg, #38ef7d 0%, #00d2ff 50%, #0080ff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+}
+
+/* Botón Limpiar filtros: */
+.boton-secundario {
+    background: linear-gradient(135deg, var(--color-cristal-base) 0%, var(--color-azul-suave) 100%);
+    color: var(--color-azul-oscuro);
+    border: 1px solid var(--color-azul-oscuro);
+}
+
+.boton-secundario:hover {
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    color: #ffffff;
+}
+
+
+
+
+
+
+/* CATÁLOGO DE PRODUCTOS: */
+.contenido-principal {
+    width: 100%;
+}
+
+.cuadricula-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.tarjeta-producto {
+    background-color: var(--color-gris-superficie);
+    border: 1px solid var(--color-gris-borde);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion-rapida);
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-elevada);
+    border-color: var(--color-cristal-base);
+}
+
+.contenedor-imagen-producto {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-producto {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.informacion-producto {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.producto-categoria {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-azul-principal);
+    background-color: var(--color-azul-suave);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    align-self: flex-start;
+}
+
+.producto-titulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-azul-oscuro);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.producto-precio {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-azul-oscuro);
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.boton-agregar-carrito {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+
+
+
+
+
+/* ESTADO DE CARGA Y MENSAJES DE ERROR: */
+.contenedor-cargador,
+.contenedor-error {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background-color: var(--color-gris-superficie);
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-gris-borde);
+}
+
+.icono-carga {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--color-azul-suave);
+    border-top: 5px solid var(--color-cristal-base);
+    border-radius: 50%;
+    animation: girar 1s linear infinite;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 0 12px var(--color-cristal-sombra);
+}
+
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.contenedor-error {
+    border-color: #fca5a5;
+    background-color: #fef2f2;
+    color: #991b1b;
+}
+
+.contenedor-error p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
