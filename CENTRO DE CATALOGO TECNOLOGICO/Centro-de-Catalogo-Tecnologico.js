@@ -156,3 +156,23 @@ function renderizarProductos(productos) {
         contenedorProductos.appendChild(clon);
     });
 }
+
+function actualizarWidgetClima(clima) {
+    elementoCiudad.textContent = "Tánger, MA";
+    elementoTemperatura.textContent = `${Math.round(clima.temperature)}°C`;
+    elementoIconoClima.textContent = obtenerIconoClima(clima.weathercode);
+}
+
+function obtenerIconoClima(codigo) {
+    if (codigo === 0) return "☀️";
+    if (codigo >= 1 && codigo <= 3) return "🌤️";
+    if (codigo >= 45 && codigo <= 48) return "🌫️";
+    if (codigo >= 51 && codigo <= 67) return "🌧️";
+    if (codigo >= 71) return "❄️";
+    return "🌡️";
+}
+
+
+
+
+// CARRITO Y ALMACENAMIENTO PERMANENTE:
