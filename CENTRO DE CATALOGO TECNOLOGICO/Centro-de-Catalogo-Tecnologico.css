@@ -75,20 +75,34 @@ body {
 }
 
 .contenedor-cabecera {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    width: 100%;
 }
 
 .titulo-marca {
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: #ffffff;
+    flex: 1;
+    text-align: left;
+    margin: 0;
+}
+
+.cabecera-principal > .contenedor-cabecera > .widget-clima {
+    flex: 0 0 auto;
+    margin: 0 auto;
+}
+
+.cabecera-principal .widget-clima {
+    flex: 0 1 auto;
+    justify-content: center;
+}
+
+.contenedor-carrito {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Widget del Clima: */
@@ -118,6 +132,22 @@ body {
 
 .clima-icono {
     font-size: 1.4rem;
+}
+
+.boton-vaciar {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.boton-vaciar:hover {
+    background-color: #b91c1c;
 }
 
 
@@ -198,6 +228,12 @@ body {
     border-color: var(--color-cristal-base);
     box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
     background-color: #ffffff;
+}
+
+.filtros, aside {
+    position: sticky;
+    top: 20px; 
+    align-self: flex-start; 
 }
 
 
@@ -397,3 +433,34 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
 }
+
+.paginacion-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 30px auto 10px;
+    grid-column: 1 / -1; /* Ocupa todo el ancho si usas CSS Grid */
+}
+
+.paginacion-contenedor button {
+    background-color: var(--color-azul-oscuro, #1a2a3a);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.paginacion-contenedor button:hover:not(:disabled) {
+    background-color: var(--color-azul-brillante, #2563eb);
+}
+
+.paginacion-contenedor button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+

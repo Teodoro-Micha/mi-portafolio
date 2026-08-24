@@ -6,6 +6,7 @@
     <meta name="description" content="Aplicación de Clima y Catálogo de Productos con Filtros y Buscador.">
     <title>Tienda & Clima Hub</title>
     <link rel="stylesheet" href="Centro-de-Catalogo-Tecnologico.css">
+    <link rel="shortcut icon" href="LOGO GRIS.png" type="image/x-icon">
 
 </head>
 <body>
@@ -14,12 +15,20 @@
         <div class="contenedor-cabecera">
             <h1 class="titulo-marca">Tienda & clima</h1>
 
+            
             <!-- Widget del Clima: -->
-             <div class="widget-clima" id="widget-clima" aria-live="polite">
+            <div class="widget-clima" id="widget-clima" aria-live="polite">
                 <span class="clima-ciudad" id="clima-ciudad">Cargando ubicación...</span>
                 <span class="clima-temperatura" id="clima-temperatura">°C</span>
                 <span class="clima-icono" id="clima-icono">🌤️</span>
-             </div>
+            </div>
+
+            <div class="contenedor-carrito">
+                <div class="widget-clima">
+                    <span>🛒 Carrito: <strong id="badge-carrito">0</strong></span>
+                </div>
+                <button id="boton-vaciar-carrito" class="boton-vaciar">Vaciar</button>
+            </div>
         </div>
     </header>
     <div class="contenedor-app">
@@ -66,6 +75,11 @@
                 <div id="cuadricula-productos" class="cuadricula-productos" aria-live="polite"></div>
             </section>
         </main>
+        <div id="paginacion" class="paginacion-contenedor">
+            <button id="boton-prev">Anterior</button>
+            <span id="texto-pagina">Página 1 de 1</span>
+            <button id="boton-next">Siguiente</button>
+        </div>
     </div>
 
     <!-- Plantilla para cada Producto: -->

@@ -2,6 +2,9 @@
 let productosTotales = [];
 let carrito = JSON.parse(localStorage.getItem("carrito_compras")) || [];
 
+let paginaActual = 1;
+const productosPorPagina = 6;
+
 
 const contenedorProductos = document.getElementById("cuadricula-productos");
 const plantillaProducto = document.getElementById("plantilla-tarjeta-producto");
@@ -30,6 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function configurarEventos() {
+    document.getElementById("boton-prev").addEventListener('click', () => {
+        if (paginaActual > 1) {
+        paginaActual--;
+        renderizarProductos(productosTotales);
+        }
+    });
+
+    document.getElementById("boton-next").addEventListener('click', () => {
+        const totalPaginas = Math.ceil(productosTotales.length / productosPorPagina);
+        if (paginaActual < totalPaginas) {
+        paginaActual++;
+        renderizarProductos(productosTotales);
+        }
+    });
+
     entradaBusqueda.addEventListener("input", aplicarFiltros);
     selectorCategoria.addEventListener("change", aplicarFiltros);
     botonLimpiarFiltros.addEventListener("click", reiniciarFiltros);
@@ -46,13 +64,16 @@ async function obtenerProductos() {
     ocultarError();
 
     try {
-        const respuesta = await fetch("https://fakestoreapi.com/products");
+        const respuesta = await fetch("https://dummyjson.com/products?limit=100");
+        
         
         if (!respuesta.ok) {
             throw new Error(`Error en la petición HTTP: ${respuesta.status}`);
         }
 
-        productosTotales = await respuesta.json();
+        const datos = await respuesta.json();
+        productosTotales = datos.products;
+
         poblarCategorias(productosTotales);
         renderizarProductos(productosTotales);
 
@@ -89,6 +110,8 @@ async function obtenerClima() {
 
 // FILTRADO Y BÚSQUEDA:
 function aplicarFiltros() {
+    paginaActual = 1;
+
     const textoBusqueda = entradaBusqueda.value.toLowerCase().trim();
     const categoriaSeleccionada = selectorCategoria.value;
 
@@ -100,7 +123,7 @@ function aplicarFiltros() {
     });
 
     if (productosFiltrados.length === 0) {
-        mostrarError('No se encontraron productos que coincidan con tu búsqueda.');
+        mostrarError("No se encontraron productos que coincidan con tu búsqueda.");
         renderizarProductos([]);
     } else {
         ocultarError();
@@ -133,29 +156,65 @@ function poblarCategorias(productos) {
 
 
 // RENDERIZADO Y DIBUJO EN EL DOM:
+function obtenerProductosPaginados(listaProductos) {
+    const inicio = (paginaActual - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+    return listaProductos.slice(inicio, fin);
+}
+
+function actualizarPaginacionUI(totalProductos) {
+    const totalPaginas = Math.ceil(totalProductos.length / productosPorPagina) || 1;
+    document.getElementById("texto-pagina").textContent = `Página ${paginaActual} de ${totalPaginas}`;
+    
+    document.getElementById("boton-prev").disabled = paginaActual === 1;
+    document.getElementById("boton-next").disabled = paginaActual === totalPaginas;
+}
+
+
 function renderizarProductos(productos) {
     contenedorProductos.innerHTML = '';
 
-    productos.forEach(producto => {
+    const productosAMostrar = obtenerProductosPaginados(productos);
+
+    productosAMostrar.forEach(producto => {
         // Clonamos plantilla HTML:
         const clon = plantillaProducto.content.cloneNode(true);
 
         // Insertamos  los datos:
         const imagen = clon.querySelector(".imagen-producto");
-        imagen.src = producto.image;
+
+        let urlImagen = "https://placehold.co/300x300?text=Sin+Imagen";
+        if (producto.images && producto.images.length > 0) {
+            // Limpiamos corchetes, comillas y barras invertidas que envía la API de Platzi:
+            let urlLimpia = producto.images[0].replace(/[\[\]\\"]/g, "");
+        
+            // Verificamos que empiece por http/https:
+            if (urlLimpia.startsWith("http")) {
+                urlImagen = urlLimpia;
+            }
+        }
+        imagen.src = producto.thumbnail;
+        imagen.onerror = function() {
+            this.onerror = null;
+            this.src = "https://placehold.co/300x300?text=Sin+Imagen";
+        };
         imagen.alt = producto.title;
+
 
         clon.querySelector(".producto-categoria").textContent = producto.category;
         clon.querySelector(".producto-titulo").textContent = producto.title;
         clon.querySelector(".producto-precio").textContent = `$${producto.price.toFixed(2)}`;
 
         // Botón Añadir al Carrito:
-        const botonAgregar = clon.querySelector('.boton-agregar-carrito');
-        botonAgregar.addEventListener('click', () => agregarAlCarrito(producto));
+        const botonAgregar = clon.querySelector(".boton-agregar-carrito");
+        botonAgregar.addEventListener("click", () => agregarAlCarrito(producto));
 
         contenedorProductos.appendChild(clon);
     });
+
+    actualizarPaginacionUI(productos);
 }
+
 
 function actualizarWidgetClima(clima) {
     elementoCiudad.textContent = "Tánger, MA";
@@ -176,3 +235,63 @@ function obtenerIconoClima(codigo) {
 
 
 // CARRITO Y ALMACENAMIENTO PERMANENTE:
+function agregarAlCarrito(producto) {
+    carrito.push(producto);
+    guardarCarritoLocalStorage();
+    actualizarContadorCarritoUI();
+}
+
+function vaciarCarrito() {
+    carrito = [];
+    localStorage.removeItem("carrito_compras");
+    actualizarContadorCarritoUI();
+}
+
+function guardarCarritoLocalStorage() {
+    localStorage.setItem("carrito_compras", JSON.stringify(carrito));
+}
+
+function inicializarCarritoUI() {
+    actualizarContadorCarritoUI();
+
+    const botonVaciar = document.getElementById("boton-vaciar-carrito");
+    if (botonVaciar) {
+        botonVaciar.addEventListener("click", () => {
+            if (carrito.length === 0) {
+                alert("El carrito ya está vacío.");
+                return;
+            }
+            if (confirm("¿Seguro que deseas vaciar el carrito?")) {
+                vaciarCarrito();
+            }
+        });
+    }
+}
+
+function actualizarContadorCarritoUI() {
+    const contadorBadge = document.getElementById("badge-carrito");
+    if (contadorBadge) {
+        contadorBadge.textContent = carrito.length;
+    }
+}
+
+
+
+
+// MANEJO DE LOADER & ERRORES:
+function mostrarCargador(mostrar) {
+    if (mostrar) {
+        cargador.classList.remove("oculto");
+    } else {
+        cargador.classList.add("oculto");
+    }
+}
+
+function mostrarError(mensaje) {
+    textoError.textContent = mensaje;
+    contenedorError.classList.remove("oculto");
+}
+
+function ocultarError() {
+    contenedorError.classList.add("oculto");
+}
