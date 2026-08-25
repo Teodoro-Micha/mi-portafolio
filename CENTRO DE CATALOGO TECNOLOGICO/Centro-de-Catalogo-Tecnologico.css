@@ -165,36 +165,38 @@ body {
     flex: 1;
 }
 
-/* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o más: */
+
+/* Bloqueamos el scroll horizontal indeseado en toda la web: */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o menos: */
 @media (max-width: 768px) {
-    .contenedor-cabecera {
-        flex-direction: column;
-        gap: 12px;
-        padding: 10px;
+    /* Forzarmos a que el contenedor principal use una sola columna: */
+    main, 
+    .contenedor-principal,
+    .contenido-principal {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 10px !important;
+        box-sizing: border-box;
     }
 
-    .titulo-marca {
-        text-align: center;
-        width: 100%;
+    /* Aseguramos que la cuadrícula de productos ocupe todo el ancho: */
+    #cuadricula-productos {
+        grid-template-columns: 1fr !important; 
+        width: 100% !important;
     }
 
-    .contenedor-carrito {
-        justify-content: center;
-        width: 100%;
-    }
-
-    .contenedor-app {
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        align-items: start;
-    }
-
-    .contenedor-filtros, 
-    aside {
-        position: static !important; 
-        width: 100%;
-        margin-bottom: 20px;
-        z-index: 1;
+    /* Ajustamos las tarjetas para que no se salgan: */
+    .tarjeta-producto {
+        width: 100% !important;
+        box-sizing: border-box;
     }
 }
 
