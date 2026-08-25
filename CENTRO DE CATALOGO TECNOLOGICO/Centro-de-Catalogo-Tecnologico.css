@@ -166,7 +166,23 @@ body {
 }
 
 /* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o más: */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+    .contenedor-cabecera {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .titulo-marca {
+        text-align: center;
+        width: 100%;
+    }
+
+    .contenedor-carrito {
+        justify-content: center;
+        width: 100%;
+    }
+    
     .contenedor-app {
         display: grid;
         grid-template-columns: 280px 1fr;
