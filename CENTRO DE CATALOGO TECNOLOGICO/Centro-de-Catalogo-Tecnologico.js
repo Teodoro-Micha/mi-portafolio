@@ -3,7 +3,7 @@ let productosTotales = [];
 let carrito = JSON.parse(localStorage.getItem("carrito_compras")) || [];
 
 let paginaActual = 1;
-const productosPorPagina = 8;
+const productosPorPagina = 6;
 
 
 const contenedorProductos = document.getElementById("cuadricula-productos");

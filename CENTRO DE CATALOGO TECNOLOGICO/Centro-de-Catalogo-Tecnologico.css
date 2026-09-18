@@ -72,6 +72,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    flex: 1;
 }
 
 .contenedor-cabecera {
@@ -160,8 +161,8 @@ body {
     margin: 2rem auto;
     padding: 0 1.5rem;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    gap: 20px;
+    align-items: flex-start;
     flex: 1;
 }
 
@@ -215,6 +216,8 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    width: 280px;
+    flex-shrink: 0;
 }
 
 .titulo-lateral {
@@ -335,11 +338,12 @@ html, body {
 /* CATÁLOGO DE PRODUCTOS: */
 .contenido-principal {
     width: 100%;
+    flex: 1;
 }
 
 .cuadricula-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
