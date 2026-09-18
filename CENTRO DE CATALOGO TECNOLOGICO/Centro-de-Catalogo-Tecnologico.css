@@ -186,7 +186,7 @@ html, body {
     }
 
     .cuadricula-productos{
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
     }
     .cabecera-principal {
         height: auto !important;
