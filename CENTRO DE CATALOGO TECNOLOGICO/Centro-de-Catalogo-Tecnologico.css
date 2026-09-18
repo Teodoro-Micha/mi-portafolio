@@ -186,7 +186,8 @@ html, body {
     }
 
     .cuadricula-productos{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        width: 100%;
     }
     .cabecera-principal {
         height: auto !important;
@@ -210,6 +211,10 @@ html, body {
     .contenedor-carrito {
         justify-content: center !important;
         width: 100% !important;
+    }
+
+    .tarjeta-producto {
+        width: 100%;
     }
 }
 
@@ -355,7 +360,8 @@ html, body {
 .cuadricula-productos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 20px;
+    width: 100%;
 }
 
 .tarjeta-producto {
