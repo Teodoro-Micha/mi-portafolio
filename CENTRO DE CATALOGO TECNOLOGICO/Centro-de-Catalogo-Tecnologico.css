@@ -177,6 +177,17 @@ html, body {
 
 /* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o menos: */
 @media (max-width: 768px) {
+    .contenedor-app {
+        flex-direction: column; 
+    }
+
+    .barra-lateral-filtros{
+        width: 100%;
+    }
+
+    .cuadricula-productos{
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
     .cabecera-principal {
         height: auto !important;
         padding: 1rem !important;
