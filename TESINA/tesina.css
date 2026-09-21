@@ -285,9 +285,20 @@ video {
     transform: translateY(-1px);
 }
 
+.contenedor-boton-flotante{
+    position: sticky;
+    top: 85vh;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    margin-top: -50px;
+    pointer-events: none;
+    z-index: 999;
+}
+
 .btn-volver-indice {
-    margin-top: 30px;
-    text-align: right;
+    pointer-events: auto;
+    margin-top: 0;
 }
 
 .btn-volver-indice p {
@@ -296,21 +307,25 @@ video {
 }
 
 .btn-volver-indice a {
+    display: inline-block;
     font-family: var(--fuente-titulos);
     font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--color-texto-gris);
-    background-color: var(--color-borde);
-    padding: 6px 14px;
-    border-radius: 20px;
+    color: #ffffff;
+    background-color: var(--color-principal);
+    padding: 8px 16px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
 }
 
 .btn-volver-indice a:hover {
     color: #ffffff;
-    background-color: var(--color-principal);
+    background-color:#00070e;
     text-decoration: none;
+    transform: translateY(-2px);
 }
 
 
