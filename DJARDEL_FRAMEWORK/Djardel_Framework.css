@@ -1,0 +1,54 @@
+:root{
+    --color-fondo: #060913;
+    --color-fondo-tarjeta: rgba(15, 23, 42, 0.85);
+    
+    --gradiente-texto: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #00c6ff 100%);
+    --gradiente-borde: linear-gradient(135deg, #00f2fe, #9b51e0, #ff007f);
+    --gradiente-tarjeta-hover: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(155, 81, 224, 0.15));
+
+    --brillo-cyan: #00f2fe;
+    --brillo-violeta: #9b51e0;
+    --brillo-rosa: #ff007f;
+    
+    --color-texto-principal: #ffffff;
+    --color-texto-secundario: #94a3b8;
+
+    --fuente-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --transicion-suave: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.6;
+    background-image:
+        radial-gradient(circle at 20% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(255, 0, 127, 0.08) 0%, transparent 40%);
+}
+
+#cabecera-principal {
+    text-align: center;
+    padding: 3.5rem 1.5rem 1.5rem;
+}
+
+.titulo-principal {
+    font-size: 3.2rem;
+    font-weight: 900;
+    background: var(--gradiente-texto);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+    filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.4));
+}
