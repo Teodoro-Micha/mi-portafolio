@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.getElementById("formulario-contacto");
     const inputNombre = document.getElementById("nombre");
     const inputMensaje = document.getElementById("mensaje");
-    const inputsTexto = [inputNombre];
+    const inputsTexto = inputNombre ? [inputNombre] : [];
     const inputCorreo = document.getElementById("correo");
 
 
@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filtrarSoloLetras(texto) {
         return texto.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    }
+
+    function esCorreoValido(correo) {
+        const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return patronCorreo.test(correo);
     }
 
 
@@ -34,83 +39,105 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
+
     //RESULTADOS AL ENVIAR:
-    formulario.addEventListener("submit", async (suceso) => {
-        suceso.preventDefault();
-        
-        const nombreValido = inputNombre.value.trim();
-        const mensajeValido = inputMensaje.value.trim();
-        const correoValido = inputCorreo.value.trim();
+    if (formulario) {
+        formulario.addEventListener("submit", async (suceso) => {
+            suceso.preventDefault();
 
-        // Validamos que los campos de texto no estén vacíos o solo con espacios:
-        if (nombreValido === '') {
-            alert('Por favor, ingresa tu nombre.');
-            inputNombre.focus();
-            return;
-        }
 
-        
-        if (correoValido === '') {
-            alert("Por favor, ingresa tu correo electrónico.");
-            inputCorreo.focus();
-            return;
-        }
+            const nombreValido = inputNombre.value.trim();
+            const mensajeValido = inputMensaje.value.trim();
+            const correoValido = inputCorreo.value.trim();
 
-        if (!esCorreoValido(correoValido)) {
-            alert("Por favor, ingresa un correo electrónico válido (ejemplo: usuario@dominio.com).");
-            inputCorreo.focus();
-            return;
-        }
 
-        // Que no sea posible aceptar menos de 10 caracteres:
-        if (mensajeValido.length < 10) {
-            alert('El mensaje es demasiado corto. Debe tener al menos 10 caracteres.');
-            inputMensaje.focus();
-            return;
-        }
-
-        
-        const formData = new FormData(formulario);
-
-        try {
-            const response = await fetch("https://formspree.io/f/xjgnqzpp", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "Accept": "application/json"
+            // Validamos que los campos de texto no estén vacíos o solo con espacios:
+            if (nombreValido === '') {
+                alert('Por favor, ingresa tu nombre.');
+                inputNombre.focus();
+                return;
             }
-            });
 
-        if (response.ok) {
-            alert('¡Mensaje enviado con éxito!');
-            formulario.reset();
-        } else {
-        alert('Hubo un problema al enviar el mensaje.');
+            if (correoValido === '') {
+                alert("Por favor, ingresa tu correo electrónico.");
+                inputCorreo.focus();
+                return;
+            }
+
+            if (!esCorreoValido(correoValido)) {
+                alert("Por favor, ingresa un correo electrónico válido (ejemplo: usuario@dominio.com).");
+                inputCorreo.focus();
+                return;
+            }
+
+            // Que no sea posible aceptar menos de 10 caracteres:
+            if (mensajeValido.length < 10) {
+                alert('El mensaje es demasiado corto. Debe tener al menos 10 caracteres.');
+                inputMensaje.focus();
+                return;
+            }
+
+
+            const formData = new FormData(formulario);
+
+            try {
+                const response = await fetch("https://formspree.io/f/xjgnqzpp", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (response.ok) {
+                    alert('¡Mensaje enviado con éxito!');
+                    formulario.reset();
+                } else {
+                    alert('Hubo un problema al enviar el mensaje.');
+                }
+            } catch (error) {
+                alert("Error de conexión. Inténtalo de nuevo más tarde.");
+            }
+                
+        });
+    }
+
+    
+    //TIEMPO MARRUECOS - TÁNGER:
+    function TiempoMarruecos() {
+        const ahora = new Date();
+        const opcionesFecha = { timeZone: 'Africa/Casablanca', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const opcionesHora = { timeZone: 'Africa/Casablanca', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+        let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
+        fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+
+        const elemFecha = document.getElementById("fecha-marruecos");
+        const elemReloj = document.getElementById("reloj-marruecos");
+
+        if (elemFecha && elemReloj) {
+        elemFecha.innerText = fechaTexto;
+        elemReloj.innerText = ahora.toLocaleTimeString('es-ES', opcionesHora);
         }
-        } catch (error) {
-            alert("Error de conexión. Inténtalo de nuevo más tarde.");
-        }
+    }
+
+    TiempoMarruecos();
+    setInterval(TiempoMarruecos, 1000);
+
         
-    });
-
-
-
-    // Mostramos visualmente el input con error:
-    function marcarCampoInvalido(input, mensaje) {
-        input.style.borderColor = '#ef4444';
-        input.focus();
-    }
-
-    // Mostramos el estilo original si el input es valido:
-    function limpiarErrorCampo(input) {
-        input.style.borderColor = '';
-    }
-
-    function esCorreoValido(correo) {
-    const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return patronCorreo.test(correo);
-    }
 });
+
+
+    
+        
+
+
+
+
+
+
+
     
 
 
@@ -130,9 +157,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //Gestión de Empresas & Habilidades Blandas: Gestión de Operaciones: Análisis de métricas clave (recontacto, resolución en primer contacto, eficiencia); Atención al Cliente: Gestión de clientes difíciles, resolución de conflictos y soporte técnico especializado; Gestión de Proyectos: Planificación, asignación de recursos y control de plazos; Comunicación Fuerte: Capacidad para actuar como puente entre el equipo técnico y la administración del negocio.
     //Proyectos Destacados: CONVERSIÓN A PAGINA WEB DE MI TESINA COMO TÉCNICO SUPERIOR EN GESTION DE EMPRESAS, tesina titulada Estrategias globales para atraer, seleccionar y retener talento en los centros de llamadas, basado en Estrategias globales para atraer, seleccionar y retener talento en los centros de llamadas; este Portafolio Web Profesional Independiente basado en Creación de una estructura web limpia y accesible utilizando exclusivamente HTML semántico para garantizar un rendimiento óptimo y una separación estricta de la lógica de diseño.
     //Experiencia Profesional: Asesor / Agente de Servicio al Cliente y Soporte Técnico en la empresa Konecta [Agosto - 2024] - Actualidad,su trabajo consiste en Atención directa y gestión de incidencias técnicas complejas relacionadas con servicios y software; Monitoreo y mejora activa de métricas críticas de rendimiento individual y de equipo (reducción del porcentaje de recontacto y optimización de soluciones efectivas); Colaboración estrecha con supervisores y equipos operativos para refinar los flujos de comunicación con el cliente. También es Técnico Independiente de Mantenimiento Informático Autónomo / Freelance  desde 2025; se basa en Diagnóstico y reparación de fallas de software, almacenamiento de datos y mantenimiento preventivo para clientes particulares y comerciales; Gestión integral del pequeño negocio: presupuestos, atención al cliente y facturación.
-    `;
-
-
-
-
-
+    //`;

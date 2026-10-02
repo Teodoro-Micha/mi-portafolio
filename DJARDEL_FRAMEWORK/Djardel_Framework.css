@@ -37,6 +37,10 @@ body{
         radial-gradient(circle at 80% 85%, rgba(255, 0, 127, 0.08) 0%, transparent 40%);
 }
 
+
+
+
+/* ENCABEZADO PRINCIPAL: */
 #cabecera-principal {
     text-align: center;
     padding: 3.5rem 1.5rem 1.5rem;
@@ -51,4 +55,122 @@ body{
     margin-bottom: 0.5rem;
     letter-spacing: -1px;
     filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.4));
+}
+
+.subtitulo {
+    color: var(--color-texto-secundario);
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+
+
+
+/* CONTENIDO PRINCIPAL: */
+#contenido-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    flex-grow: 1;
+}
+
+.contenedor-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    justify-content: center;
+}
+
+.tarjeta-modulo {
+    position: relative;
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 20px;
+    padding: 2px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(12px);
+    transition: var(--transicion-suave);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.tarjeta-modulo-contenido {
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.tarjeta-modulo:hover {
+    transform: translateY(-10px) scale(1.02);
+    background-image: var(--gradiente-borde);
+    box-shadow:
+        0 0 25px rgba(0, 242, 254, 0.35),
+        0 0 50px rgba(155, 81, 224, 0.2);
+}
+
+.enlace-modulo {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.imagen-modulo {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    filter: brightness(0.9) contrast(1.05);
+}
+
+.tarjeta-modulo:hover .imagen-modulo {
+    filter: brightness(1.1) contrast(1.1);
+    transform: scale(1.04);
+}
+
+.titulo-modulo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding: 1.rem 1.5rem;
+    text-align: center;
+    color: var(--color-texto-principal);
+    transition: var(--transicion-suave);
+}
+
+.tarjeta-modulo:hover .titulo-modulo {
+    background: var(--gradiente-texto);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+
+/* PIE DE PAGINA: */
+#pie-pagina {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 3rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 242, 254, 0.02) 100%);
+}
+
+.texto-derechos {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+
+
+/* ADAPTABILIDAD A MOVILES: */
+@media (max-width: 768px) {
+    .titulo-principal {
+        font-size: 2.4rem
+    }
+
+    .contenedor-menu {
+        grid-template-columns: 1fr;
+    }
 }
