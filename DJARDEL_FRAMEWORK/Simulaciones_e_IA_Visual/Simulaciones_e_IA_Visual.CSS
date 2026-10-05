@@ -1,0 +1,116 @@
+:root {
+    --color-fondo: #060913;
+    --color-panel: rgba(15, 23, 42, 0.85);
+    
+    
+    --color-tablero: #1e293b;
+    --color-borde-tablero: rgba(59, 130, 246, 0.3);
+    --color-hueco: #0b1120;
+    
+    --color-ficha-jugador: #ff0055;  /* Neón Rojo / Rosa */
+    --color-ficha-ia: #00f2fe;       /* Neón Cyan / Piter Monarca */
+    
+    
+    --gradiente-titulo: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #00c6ff 100%);
+    --gradiente-boton: linear-gradient(135deg, #3b82f6, #9b51e0);
+    --gradiente-boton-hover: linear-gradient(135deg, #60a5fa, #a855f7);
+
+    --color-texto-principal: #ffffff;
+    --color-texto-secundario: #94a3b8;
+
+    --fuente-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 0, 85, 0.08) 0%, transparent 40%);
+}
+
+
+
+/* ENCABEZADO: */
+#cabecera-juego {
+    text-align: center;
+    padding: 2rem 1.5rem 1rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.enlace-volver {
+    display: inline-block;
+    color: var(--color-texto-secundario);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    transition: var(--transicion-suave);
+}
+
+.enlace-volver:hover {
+    color: #00f2fe;
+    transform: translateX(-4px);
+}
+
+.titulo-juego {
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--gradiente-titulo);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.4));
+}
+
+.subtitulo-juego {
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+}
+
+
+
+
+/* PANEL DE CONTROL Y CONFIGURACIÓN: */
+#contenedor-principal {
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#panel-control {
+    width: 100%;
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-borde-tablero);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.bloque-dificultad {}

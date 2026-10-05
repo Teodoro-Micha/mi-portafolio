@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piter Monarca - Simulaciones e IA Visual</title>
+    <link rel="stylesheet" href="Simulaciones_e_IA_Visual.CSS">
+</head>
+<body>
+    <header id="cabecera-juego">
+        <a href="../Djardel_Framework.HTML" class="enlace-volver">&larr; Volver al Menú Principal</a>
+        <h1 class="titulo-juego">Piter Monarca</h1>
+        <p class="subtitulo-juego">Módulo de Simulación e Inteligencia Artificial Visual</p>
+    </header>
+
+    <main id="contenedor-principal">
+
+        <section id="panel-control">
+            <div class="bloque-dificultad">
+                <label for="selector-dificultad" class="etiqueta-dificultad">Dificultad de Piter Monarca:</label>
+                <select id="selector-dificultad" class="desplegable-dificultad">
+                    <option value="1">Fácil</option>
+                    <option value="2">Normal </option>
+                    <option value="3" selected>Monarca</option>
+                </select>
+            </div>
+
+            <div id="indicador-turno" class="indicador-turno">
+                Turno actual: <span id="texto-turno" class="turno-jugador">Tu Turno (Fichas Rojas)</span>
+            </div>
+
+            <button id="boton-reiniciar" class="boton-accion">Reiniciar Partida</button>
+        </section>
+
+
+        <section id="contenedor-tablero">
+            <div id="tablero-juego" class="tablero">
+                <!-- Las 42 casillas dinámicas en JS -->
+            </div>
+        </section>
+
+        <!-- Mensajes de Victoria / Empate / Estado -->
+        <section id="panel-mensajes" class="panel-oculto">
+            <div class="contenido-mensaje">
+                <h2 id="texto-resultado" class="titulo-resultado">¡Has Destronado a Piter Monarca!</h2>
+                <button id="boton-nueva-partida" class="boton-accion">Jugar de Nuevo</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="pie-juego">
+        <p class="texto-derechos">&copy; Djárdel Framework - Piter Monarca</p>
+    </footer>
+    
+</body>
+</html>
