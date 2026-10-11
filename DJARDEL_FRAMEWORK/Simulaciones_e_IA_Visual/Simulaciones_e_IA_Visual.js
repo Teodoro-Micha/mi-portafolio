@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             actualizarGraficos();
 
             if (comprobarVictoria(tablero, JUGADOR)){
-                finalizarJuego("¡Has Destronado a Piter Monarca!");
+                finalizarJuego("¡Buen Juego, ahora puedes subir de nivel!");
                 return;
             }
 
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (comprobarTableroLleno(tablero)){
-                finalizarJuego("¡Empate Táctico!");
+                finalizarJuego("¡Empate Táctico, PITER Monarca sigue siendo el REY!");
                 return;
             }
 
