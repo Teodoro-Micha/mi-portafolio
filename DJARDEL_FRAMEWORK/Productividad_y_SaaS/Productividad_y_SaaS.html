@@ -5,22 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Markdown SaaS - Djárdel Framework</title>
     <link rel="shortcut icon" href="../../Logo_sin_fondo.png" type="image/x-icon">
+    <link rel="stylesheet" href="Productividad_y_SaaS.css">
 </head>
 <body>
 
     <header id="cabecera-modulo">
         <a href="../Djardel_Framework.HTML" class="enlace-volver">&larr; Volver al Menú Principal</a>
-        <h1 class="titulo-modulo">Editor Markdown SaaS</h1>
+        <h1 class="titulo-modulo">¡EN PROCESO DE MIGRACIÓN!</h1>
         <p class="subtitulo-modulo">Módulo de Productividad y Aplicaciones SaaS (Offline)</p>
     </header>
 
-
     <!-- Área Principal de Trabajo: -->
      <main id="contenedor-principal-saas">
-        
+
+        <!-- Panel Izquierdo: -->
+        <section id="panel-editor" class="panel-seccion">
+            <div class="cabecera-panel">
+                <h2 class="titulo-panel">Entrada Markdown</h2>
+                <span class="indicador-estado">Sincronización en vivo</span>
+            </div>
+            <textarea id="entrada-markdown" class="caja-texto-markdown" placeholder="Escribe tu contenido en Markdown aquí...
+Ejemplo:
+# Título Principal
+**Texto en negrita** o *cursiva*
+- Elemento de lista 1
+- Elemento de lista 2"></textarea>
+        </section>
+
+
+        <!-- Panel Derecho: -->
+         <section id="panel-visualizador" class="panel-seccion">
+            <div class="cabecera-panel">
+                <h2 class="titulo-panel">Vista Previa HTML</h2>
+                <span class="indicador-estado">Renderizado RegEx</span>
+            </div>
+            <div id="salida-html" class="visor-resultado">
+                <!-- HTML renderizado en tiempo real mediante JavaScript -->
+            </div>
+         </section>
+
+
      </main>
 
-
-    <h1>EN PROCESO DE MIGRACIÓN!</h1>
+     <footer id="pie-modulo">
+        <p class="texto-derechos">&copy; Djárdel Framework - Motor de Formato Offline en JS</p>
+    </footer>
 </body>
 </html>
