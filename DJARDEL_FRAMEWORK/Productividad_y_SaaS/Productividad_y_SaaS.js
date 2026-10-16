@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = texto;        
 
          // Títulos (H1, H2, H3):
-        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+        html = html.replace(/^###\s*(.*$)/gim, '<h3>$1</h3>');
+        html = html.replace(/^##\s*(.*$)/gim, '<h2>$1</h2>');
+        html = html.replace(/^#\s*(.*$)/gim, '<h1>$1</h1>');
 
 
          // Negrita y Cursiva:
@@ -46,51 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
         return htmlProcesado; 
     }
-    // function convertirMarkdown(texto){
-    //     if (!texto) return '';
-    //     let lineas = texto.split('\n');
-    //     let enLista = false;
-    //     let htmlProcesado = '';
-
-    //     for (let i = 0; i < lineas.length; i++){
-    //         let linea = lineas[i].trim();
-
-    //         if (linea === ''){
-    //             if (enLista){
-    //                 htmlProcesado += '</ul>';
-    //                 enLista = false;
-    //             }
-    //             continue;
-    //         }
-
-    //         // Títulos:
-    //         if (linea.startsWith('### ')){
-    //             if (enLista) { htmlProcesado += '</ul>'; enLista = false; }
-    //             htmlProcesado += `<h3>${linea.replace('### ', '')}</h3>`;
-    //             continue;
-    //         }
-    //         if (linea.startsWith('## ')){
-    //             if (enLista) { htmlProcesado += '</ul>'; enLista = false; }
-    //             htmlProcesado += `<h2>${linea.replace('## ', '')}</h2>`;
-    //             continue;
-    //         }
-    //         if (linea.startsWith('# ')){
-    //             if (enLista) { htmlProcesado += '</ul>'; enLista = false; }
-    //             htmlProcesado += `<h1>${linea.replace('# ', '')}</h1>`;
-    //             continue;
-    //         }
-
-    //         // Listas:
-    //         if (linea.startsWith('- ') || linea.startsWith('* ')){
-    //             if (!enLista){
-    //                 htmlProcesado += '<ul>';
-    //                 enLista = true;
-    //             }
-    //             let contenidoLista = linea.substring(2);
-    //             // Aplicamos formatos internos de negrita/cursiva
-    //         }
-    //     }
-    // }
 
 
     // EVENTO INPUT:

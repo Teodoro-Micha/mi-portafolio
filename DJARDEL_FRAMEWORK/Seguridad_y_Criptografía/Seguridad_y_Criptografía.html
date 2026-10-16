@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Gestor de Contraseñas - Djárdel Framework</title>
+    <link rel="shortcut icon" href="../../Logo_sin_fondo.png" type="image/x-icon">
 </head>
 <body>
-    <h1>EN PROCESO DE MIGRACIÓN!</h1>
+    <header id="cabecera-modulo">
+        <a href="../index.html" class="enlace-volver">&larr; Volver al Menú Principal</a>
+        <h1 class="titulo-modulo">EN PROCESO DE MIGRACIÓN!</h1> <!-- Gestor de Contraseñas -->
+        <p class="subtitulo-modulo">Módulo de Seguridad y Criptografía Básica (Offline)</p>
+    </header>
+
+    <main id="contenedor-principal-seguridad">
+        <!-- PANEL IZQUIERDO; Generador de Contraseñas: -->
+        <section class="panel-seccion" id="panel-generador">
+            <div class="cabecera-panel">
+                <h2 class="titulo-panel">Generador Seguro</h2>
+                <span class="indicador-estado">Criptografía Local</span>
+            </div>
+
+            <div class="contenido-panel">
+                <!-- Visualizador de contraseña generada: -->
+                <div class="grupo-resultado-pass">
+                    <input type="text" id="pass-generada" readonly placeholder="Tu contraseña aparecerá aquí">
+                    <button id="btn-copiar" class="boton-accion">Copiar</button>
+                </div>
+
+                <!-- Controles de personalización: -->
+                 <div class="grupo-controles">
+                    <div class="control-rango">
+                        <label for="longitud">Longitud: <span id="valor-longitud">16</span></label>
+                        <input type="range" id="longitud" min="8" max="32" value="16">
+                    </div>
+
+                    <div class="opciones-checks">
+                        <label class="etiqueta-check">
+                            <input type="checkbox" id="incluir-mayus" checked> Mayúsculas (A-Z)
+                        </label>
+                        <label class="etiqueta-check">
+                            <input type="checkbox" id="incluir-nums" checked> Números (0-9)
+                        </label>
+                        <label class="etiqueta-check">
+                            <input type="checkbox" id="incluir-simbolos" checked> Símbolos (!@#$)
+                        </label>
+                    </div>
+
+                    <button id="btn-generar" class="boton-principal">Generar Nueva Contraseña</button>
+                </div>
+
+                <!-- Formulario para Guardar: -->
+                <div class="grupo-guardar">
+                    <h3 class="subtitulo-seccion">Guardar</h3>
+                    <div class="formulario-guardar">
+                        <input type="text" id="nombre-cuenta" placeholder="Nombre (ej. GitHub, Banco, Correo)">
+                        <button id="btn-guardar" class="boton-secundario">Guardar Credencial</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PANEL DERECHO; Almacenamiento: -->
+        <section class="panel-seccion" id="panel-boveda">
+            <div class="cabecera-panel">
+                <h2 class="titulo-panel">Bóveda Local (LocalStorage)</h2>
+                <span class="indicador-estado">Almacenamiento Seguro</span>
+            </div>
+
+            <div class="contenido-panel">
+                <div id="lista-boveda" class="contenedor-lista-boveda">
+                    <!-- Las credenciales guardadas se cargan aquí: -->
+                    <p class="mensaje-vacio">No hay contraseñas guardadas todavía.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="pie-modulo">
+        <p class="texto-derechos">&copy; Djárdel Framework - Seguridad y Criptografía en el Navegador</p>
+    </footer>
 </body>
 </html>
