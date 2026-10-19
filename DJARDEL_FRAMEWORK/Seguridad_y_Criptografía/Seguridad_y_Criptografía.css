@@ -111,3 +111,203 @@ body {
     border-color: var(--color-borde-foco);
     box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
 }
+
+.cabecera-panel {
+    background-color: rgba(11, 17, 32, 0.9);
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-panel {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+}
+
+.indicador-estado {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #00f2fe;
+    font-weight: 700;
+}
+
+.contenido-panel {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+
+
+
+/* GENERADOR Y CONTROLES: */
+.grupo-resultado-pass {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.grupo-resultado-pass input {
+    flex-grow: 1;
+    background-color: var(--color-fondo-caja);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #00f2fe;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+.boton-accion {
+    background-color: var(--color-fondo-caja);
+    border: 1px solid var(--color-borde);
+    color: var(--color-texto-principal);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transicion-suave);
+}
+
+.boton-accion:hover {
+    border-color: var(--color-borde-foco);
+    color: var(--color-borde-foco);
+}
+
+.grupo-controles {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-rango {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-rango input[type="range"] {
+    accent-color: #00f2fe;
+    cursor: pointer;
+}
+
+.opciones-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.etiqueta-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+}
+
+.etiqueta-check input {
+    accent-color: #00f2fe;
+}
+
+.boton-principal {
+    background: var(--gradiente-boton);
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+}
+
+.boton-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+}
+
+
+
+
+
+
+/* FORMULARIO GUARDAR: */
+.grupo-guardar {
+    border-top: 1px solid var(--color-borde);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.subtitulo-seccion {
+    font-size: 0.95rem;
+    color: var(--color-texto-secundario);
+}
+
+.formulario-guardar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.formulario-guardar input {
+    flex-grow: 1;
+    background-color: var(--color-fondo-caja);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 0.75rem;
+    color: var(--color-texto-principal);
+    outline: none;
+}
+
+.boton-secundario {
+    background: var(--gradiente-guardar);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+}
+
+.boton-secundario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+
+
+
+
+/* BOVEDA LOCAL: */
+.contenedor-lista-boveda {
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.mensaje-vacio {
+    color: var(--color-texto-secundario);
+    text-align: center;
+    padding: 2rem 0;
+    font-style: italic;
+}
+
+
+
+
+
+/* TARJETAS INDIVIDUALES DENTRO DE LA BÓVEDA: */
