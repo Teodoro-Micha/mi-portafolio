@@ -311,3 +311,89 @@ body {
 
 
 /* TARJETAS INDIVIDUALES DENTRO DE LA BÓVEDA: */
+/* Cuando implementemos el código JavaScript cada vez que el usuario guarde una contraseña, JavaScript creará un bloque HTML dinámico y lo inyectará dentro de la bóveda: */
+.tarjeta-credencial {
+    background-color: var(--color-fondo-caja);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transicion-suave);
+}
+
+.tarjeta-credencial:hover {
+    border-color: var(--color-borde-foco);
+}
+
+.info-credencial .nombre-cuenta {
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    font-size: 1rem;
+}
+
+.info-credencial .pass-oculta {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.acciones-credencial {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-copiar-item, .btn-eliminar-item {
+    background: transparent;
+    border: 1px solid var(--color-borde);
+    color: var(--color-texto-principal);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transicion-suave);
+}
+
+.btn-copiar-item:hover {
+    border-color: #00f2fe;
+    color: #00f2fe;
+}
+
+.btn-eliminar-item:hover {
+    background: var(--gradiente-peligro);
+    border-color: transparent;
+}
+
+
+
+
+
+
+
+
+/* PIE DE PÁGINA: */
+#pie-modulo {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--color-texto-secundario);
+    font-size: 0.85rem;
+}
+
+
+
+
+/* INTERFAZ PARA MÓVILES: */
+@media (max-width: 900px) {
+    #contenedor-principal-seguridad {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-modulo {
+        font-size: 2.2rem;
+    }
+
+    .formulario-guardar {
+        flex-direction: column;
+    }
+}
