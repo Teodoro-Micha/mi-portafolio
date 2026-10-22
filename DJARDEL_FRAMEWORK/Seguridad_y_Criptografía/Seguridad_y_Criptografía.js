@@ -69,5 +69,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // GESTIÓN DE LA BÓVEDA LOCAL:
+    function obtenerBoveda() {
+        const bovedaGuardada = localStorage.getItem('djardel_boveda');
+        return bovedaGuardada ? JSON.parse(bovedaGuardada) : [];
+    }
+
+    function guardarBoveda(boveda) {
+        localStorage.setItem('djardel_boveda', JSON.stringify(boveda));
+    }
+
+    function renderizarBoveda() {
+        const boveda = obtenerBoveda();
+        listaBoveda.innerHTML = '';
+
+        if (boveda.length === 0) {
+            listaBoveda.innerHTML = '<p class="mensaje-vacio">No hay contraseñas guardadas todavía.</p>';
+            return;
+        }
+
+
+        boveda.forEach((item, index) => {
+            // Creación de elementos con las clases que diseñadas en el CSS:
+            const tarjeta = document.createElement('div');
+            tarjeta.className = 'tarjeta-credencial';
+
+            tarjeta.innerHTML = `
+                <div class="info-credencial">
+                    <span class="nombre-cuenta">${item.nombre}</span>
+                    <span class="pass-oculta">${item.password}</span>
+                </div>
+                <div class="acciones-credencial">
+                    <button class="btn-copiar-item" data-pass="${item.password}">Copiar</button>
+                    <button class="btn-eliminar-item" data-index="${index}">Eliminar</button>
+                </div>
+            `;
+
+            listaBoveda.appendChild(tarjeta);
+
+            // Vincular eventos a los botones generados:
+            activarEventosTarjetas();
+        });
+    }
+
+    
 
 });
