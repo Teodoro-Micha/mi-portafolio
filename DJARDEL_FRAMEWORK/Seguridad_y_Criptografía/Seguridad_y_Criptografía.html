@@ -8,9 +8,34 @@
     <link rel="stylesheet" href="Seguridad_y_Criptografía.css">
 </head>
 <body>
+
+    <!-- PIZARRA EXPLICATIVA SOBRE LA INTERFAZ: -->
+    <div id="pizarra-overlay" class="pizarra-overlay">
+        <div class="pizarra-contenido">
+            <button id="btn-cerrar-pizarra" class="btn-cerrar-pizarra">&times;</button>
+
+            <h1 class="titulo-modulo">🛡️ ¿Cómo usar tu almacén de Contraseñas Seguras? 🛡️</h1>
+
+            <h2 class="explicacion-titulo">1️⃣ Generar una Contraseña Segura:</h2>
+            <p class="explicacion-p">✔️ Elige qué tan larga la quieres: Mueve la barra deslizante de longitud (te recomendamos que sea de 16 caracteres o más).</p>
+            <p class="explicacion-p">✔️ Marca o desmarca si quieres incluir mayúsculas, números o símbolos especiales.</p>
+            <p class="explicacion-p">✔️ La contraseña se genera sola al entrar, pero puedes hacer clic en "Generar Nueva Contraseña" tantas veces como quieras hasta que una te guste. Luego, solo pulsa "Copiar" para usarla donde la necesites..</p>
+
+            <h2 class="explicacion-titulo">2️⃣ Guardarla en tu almacén Privado:</h2>
+            <p class="explicacion-p">✔️ ¿Quieres recordarla sin anotarla en un papel? Escribe el nombre del sitio o cuenta en la casilla inferior (por ejemplo: Netflix, Instagram, Facebook, etc).</p>
+            <p class="explicacion-p">✔️ Haz clic en "Guardar Credencial".</p>
+            <p class="explicacion-p">✔️ ¡Listo! Tu contraseña aparecerá ordenada en el panel de la derecha (Bóveda Local)..</p>
+
+            <h2 class="pizarra-nota-footer">💡 Todo se queda guardado únicamente en tu navegador (usando la memoria local). Si cierras la pestaña o recargas la página, tus contraseñas seguirán ahí esperándote de forma totalmente segura.</h2>
+
+            <button id="btn-entender" class="boton-principal btn-entendido-pizarra">Entendido, ir al Gestor</button>
+        </div>
+    </div>
+
+
     <header id="cabecera-modulo">
         <a href="../index.html" class="enlace-volver">&larr; Volver al Menú Principal</a>
-        <h1 class="titulo-modulo">EN PROCESO DE MIGRACIÓN!</h1> <!-- Gestor de Contraseñas -->
+        <h1 class="titulo-modulo">GESTOR DE CONTRASEÑAS</h1>
         <p class="subtitulo-modulo">Módulo de Seguridad y Criptografía Básica (Offline)</p>
     </header>
 
@@ -79,6 +104,8 @@
         </section>
 
     </main>
+    <script src="Seguridad_y_Criptografía.js"></script>
+
 
     <footer id="pie-modulo">
         <p class="texto-derechos">&copy; Djárdel Framework - Seguridad y Criptografía en el Navegador</p>

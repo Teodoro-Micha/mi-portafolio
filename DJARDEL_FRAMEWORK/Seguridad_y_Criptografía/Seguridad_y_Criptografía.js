@@ -111,6 +111,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+    function activarEventosTarjetas() {
+        // Copiar contraseña desde la tarjeta:
+        document.querySelectorAll('.btn-copiar-item').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const passItem = e.target.getAttribute('data-pass');
+                navigator.clipboard.writeText(passItem);
+
+                const textoPrevio = e.target.textContent;
+                e.target.textContent = 'Copiado';
+                setTimeout(() => {
+                    e.target.textContent = textoPrevio;
+                }, 1500);
+            });
+        });
+
+
+        // Eliminar credencial de la bóveda:
+        document.querySelectorAll('.btn-eliminar-item').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const indice = e.target.getAttribute('data-index');
+                let boveda = obtenerBoveda();
+
+                boveda.splice(indice, 1);
+                guardarBoveda(boveda);
+                renderizarBoveda();
+            });
+        });
+    }
+
+
+
+    // GUARDAR NUEVA CREDENCIAL EN EL LOCALSTORAGE:
+    btnGuardar.addEventListener('click', () => {
+        const nombre = inputNombreCuenta.value.trim();
+        const password = inputPassGenerada.value;
+
+
+        if (!nombre) {
+            alert('Por favor, ingresa un nombre para identificar la cuenta (Ej: GitHub).');
+            return;
+        }
+
+        if (!password) {
+            alert('No hay ninguna contraseña generada para guardar.');
+            return;
+        }
+
+        let boveda = obtenerBoveda();
+        boveda.push({ nombre, password });
+        guardarBoveda(boveda);
+
+        // Limpiar entrada y actualizar la vista de la bóveda:
+        inputNombreCuenta.value = '';
+        renderizarBoveda();
+    });
+
+    // Cargar la bóveda al iniciar la página:
+    renderizarBoveda();
 
 });
