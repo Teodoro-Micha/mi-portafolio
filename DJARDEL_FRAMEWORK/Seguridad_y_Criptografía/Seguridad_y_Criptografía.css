@@ -456,10 +456,9 @@ body {
 }
 
 .btn-cerrar-pizarra,
-.btn-entendido-pizarra {
-    position: relative;
-    z-index: 10000;
-    touch-action: manipulation; 
+.btn-entendido-pizarra,
+.btn-ayuda-pizarra {
+    touch-action: manipulation;
     cursor: pointer;
 }
 
@@ -535,6 +534,24 @@ body {
 
 /* INTERFAZ DE LA PIZZARA PARA LOS MÓVILES: */
 @media (max-width: 768px) {
+    body > main,
+    .contenedor-principal,
+    .grid-dashboard {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    /* Asegura que cada panel mantenga su espacio sin aplastarse: */
+    .panel-generador, 
+    .panel-boveda,
+    section {
+        min-width: 85vw;
+        flex-shrink: 0;
+    }
+
     .pizarra-overlay {
         padding: 1rem; 
     }
@@ -575,4 +592,23 @@ body {
         width: 100%;          
         margin-top: 0.5rem;
     }
+}
+
+
+
+/* Corrección para que el input y el botón de copiar no se corten en móviles: */
+#pass-generada, 
+input[type="text"]#pass-generada {
+    max-width: 65% !important;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#btn-copiar,
+button#btn-copiar {
+    max-width: 30% !important;
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
 }
