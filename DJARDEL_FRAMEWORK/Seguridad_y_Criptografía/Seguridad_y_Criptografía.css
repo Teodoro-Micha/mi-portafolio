@@ -452,6 +452,15 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    display: none !important;
+}
+
+.btn-cerrar-pizarra,
+.btn-entendido-pizarra {
+    position: relative;
+    z-index: 10000;
+    touch-action: manipulation; 
+    cursor: pointer;
 }
 
 .titulo-modulo {

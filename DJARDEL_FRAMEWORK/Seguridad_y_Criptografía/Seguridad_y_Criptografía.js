@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // CONTROL DE LA PIZARRA EXPLICATIVA:
     function cerrarPizarra() {
+        if (e) {
+            e.preventDefault(); 
+            e.stopPropagation();
+        }
         if (pizarraOverlay) {
             pizarraOverlay.classList.add('oculto');
         }
@@ -30,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reabrir la pizarra explicativa:
     function abrirPizarra() {
+        if (e) {
+            e.preventDefault(); 
+            e.stopPropagation();
+        }
         if (pizarraOverlay) {
             pizarraOverlay.classList.remove('oculto'); 
         }
@@ -37,17 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnCerrarPizarra) {
         btnCerrarPizarra.addEventListener('click', cerrarPizarra);
+        btnCerrarPizarra.addEventListener('touchstart', cerrarPizarra, { passive: false });
     }
 
     if (btnEntender) {
         btnEntender.addEventListener('click', cerrarPizarra);
+        btnEntender.addEventListener('touchstart', cerrarPizarra, { passive: false });
     }
 
     // Evento para reabrir:
     if (btnAbrirPizarra) {
         btnAbrirPizarra.addEventListener('click', abrirPizarra);
+        btnAbrirPizarra.addEventListener('touchstart', abrirPizarra, { passive: false });
     }
-    
+
     // Cerrar la pizarra si el usuario hace clic fuera de la misma:
     if (pizarraOverlay) {
         pizarraOverlay.addEventListener('click', (e) => {
