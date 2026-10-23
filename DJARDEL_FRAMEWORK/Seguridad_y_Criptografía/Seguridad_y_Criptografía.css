@@ -534,24 +534,6 @@ body {
 
 /* INTERFAZ DE LA PIZZARA PARA LOS MÓVILES: */
 @media (max-width: 768px) {
-    body > main,
-    .contenedor-principal,
-    .grid-dashboard {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        gap: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    /* Asegura que cada panel mantenga su espacio sin aplastarse: */
-    .panel-generador, 
-    .panel-boveda,
-    section {
-        min-width: 85vw;
-        flex-shrink: 0;
-    }
-
     .pizarra-overlay {
         padding: 1rem; 
     }
