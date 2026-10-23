@@ -10,12 +10,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputNombreCuenta = document.getElementById('nombre-cuenta');
     const btnGuardar = document.getElementById('btn-guardar');
     const listaBoveda = document.getElementById('lista-boveda');
-
+    const pizarraOverlay = document.getElementById('pizarra-overlay');
+    const btnCerrarPizarra = document.getElementById('btn-cerrar-pizarra');
+    const btnEntender = document.getElementById('btn-entender');
+    const btnAbrirPizarra = document.getElementById('btn-abrir-pizarra'); 
 
     const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
     const letrasMayusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const numeros = '0123456789';
     const simbolos = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+
+    // CONTROL DE LA PIZARRA EXPLICATIVA:
+    function cerrarPizarra() {
+        if (pizarraOverlay) {
+            pizarraOverlay.classList.add('oculto');
+        }
+    }
+
+    // Reabrir la pizarra explicativa:
+    function abrirPizarra() {
+        if (pizarraOverlay) {
+            pizarraOverlay.classList.remove('oculto'); 
+        }
+    }
+
+    if (btnCerrarPizarra) {
+        btnCerrarPizarra.addEventListener('click', cerrarPizarra);
+    }
+
+    if (btnEntender) {
+        btnEntender.addEventListener('click', cerrarPizarra);
+    }
+
+    // Evento para reabrir:
+    if (btnAbrirPizarra) {
+        btnAbrirPizarra.addEventListener('click', abrirPizarra);
+    }
+    
+    // Cerrar la pizarra si el usuario hace clic fuera de la misma:
+    if (pizarraOverlay) {
+        pizarraOverlay.addEventListener('click', (e) => {
+            if (e.target === pizarraOverlay) {
+                cerrarPizarra();
+            }
+        });
+    }
+    
 
 
     // ACTUALIZAR EL VALOR NUMÉRICO DE LA LONGITUD EN VIVO:
