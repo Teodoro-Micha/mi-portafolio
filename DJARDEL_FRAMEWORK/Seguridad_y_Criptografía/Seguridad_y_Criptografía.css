@@ -444,6 +444,7 @@ body {
     align-items: center;
     padding: 1.5rem;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: auto;
 }
 
 
@@ -452,7 +453,6 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    display: none !important;
 }
 
 .btn-cerrar-pizarra,
