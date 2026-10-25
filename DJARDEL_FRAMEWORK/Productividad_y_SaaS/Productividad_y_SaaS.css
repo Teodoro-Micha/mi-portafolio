@@ -39,8 +39,6 @@ body {
 }
 
 
-
-
 /* ENCABEZADO: */
 #cabecera-modulo {
     text-align: center;
@@ -76,6 +74,33 @@ body {
 .subtitulo-modulo {
     color: var(--color-texto-secundario);
     font-size: 1.05rem;
+}
+
+
+
+
+/* BOTÓN PARA REABRIR LA PIZARRA EXPLICATIVA: */
+.btn-ayuda-pizarra {
+    margin-top: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--color-borde);
+    color: var(--color-borde-foco);
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.btn-ayuda-pizarra:hover {
+    background-color: rgba(0, 242, 254, 0.1);
+    border-color: #00f2fe;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+    transform: translateY(-1px);
 }
 
 
@@ -225,4 +250,230 @@ body {
     .visor-resultado {
         height: 350px;
     }
+}
+
+
+
+
+
+
+/* PIZARRA EXPLICATIVA SOBRE LA INTERFAZ: */
+.pizarra-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(6, 9, 19, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: auto;
+}
+
+
+/* Cuando el usuario hace clic en el botón de cerrar (x) o en el botón "Entendido, ir al Gestor", JavaScript le añade dinámicamente la clase .oculto: */
+.pizarra-overlay.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.btn-cerrar-pizarra,
+.btn-entendido-pizarra,
+.btn-ayuda-pizarra {
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.titulo-modulo {
+    text-align: center;
+}
+
+.pizarra-contenido {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-borde-foco);
+    box-shadow: 0 0 35px rgba(0, 242, 254, 0.25);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.btn-cerrar-pizarra {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    color: var(--color-texto-secundario);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--transicion-suave);
+}
+
+.btn-cerrar-pizarra:hover {
+    color: #00f2fe;
+    transform: scale(1.1);
+}
+
+.explicacion-titulo {
+    color: #00f2fe;
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.explicacion-p {
+    color: var(--color-texto-principal);
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    line-height: 1.5;
+}
+
+
+.btn-entendido-pizarra {
+    margin-top: 1rem;
+    align-self: center;
+    min-width: 300px;
+    background: var(--gradiente-sincro);
+    color: var(--color-texto-principal);
+    border: 1px solid var(--color-borde-foco);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transicion-suave);
+}
+
+.btn-entendido-pizarra:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+
+/* INTERFAZ DE LA PIZZARA PARA LOS MÓVILES: */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    #cabecera-modulo {
+        padding: 1rem 0.5rem 0.5rem;
+    }
+
+    .titulo-modulo {
+        font-size: 1.8rem;
+        letter-spacing: -0.5px;
+    }
+
+    .subtitulo-modulo {
+        font-size: 0.85rem;
+    }
+
+    #contenedor-principal-saas {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    .panel-seccion {
+        border-radius: 12px;
+    }
+
+    .cabecera-panel {
+        padding: 0.75rem 1rem;
+    }
+
+    .titulo-panel {
+        font-size: 0.95rem;
+    }
+
+    .indicador-estado {
+        font-size: 0.65rem;
+    }
+
+    .caja-texto-markdown,
+    .visor-resultado {
+        height: 320px; 
+        padding: 0.85rem;
+        font-size: 0.85rem;
+    }
+
+    .pizarra-overlay {
+        padding: 0.75rem;
+    }
+
+    .pizarra-contenido {
+        padding: 1.5rem 1rem;
+        max-height: 85vh;
+        gap: 0.75rem;
+        border-radius: 14px;
+    }
+
+    .pizarra-contenido .titulo-modulo {
+        font-size: 1.3rem;
+        padding-right: 2rem; 
+        text-align: left;
+    }
+
+    .explicacion-titulo {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-top: 0.2rem;
+    }
+
+    .explicacion-p {
+        font-size: 0.82rem;
+        padding-left: 0.2rem;
+        line-height: 1.4;
+    }
+
+    .btn-cerrar-pizarra {
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 1.8rem;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-entendido-pizarra {
+        min-width: 100%;
+        padding: 0.75rem;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+}
+
+
+/* Corrección para que el input y el botón de copiar no se corten en móviles: */
+#pass-generada, 
+input[type="text"]#pass-generada {
+    max-width: 65% !important;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#btn-copiar,
+button#btn-copiar {
+    max-width: 30% !important;
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
 }
