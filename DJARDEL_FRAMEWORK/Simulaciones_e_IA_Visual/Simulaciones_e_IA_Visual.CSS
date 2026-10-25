@@ -471,6 +471,7 @@ body {
     .titulo-modulo {
         font-size: 1.8rem;
         letter-spacing: -0.5px;
+        text-align: center;
     }
 
     .subtitulo-modulo {
