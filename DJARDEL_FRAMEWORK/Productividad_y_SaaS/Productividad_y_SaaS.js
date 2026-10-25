@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const entradaMarkdown = document.getElementById('entrada-markdown');
     const salidaHtml = document.getElementById('salida-html');
 
+    // PIZARRA EXPLICATIVA:
     const pizarraOverlay = document.getElementById('pizarra-overlay');
     const btnCerrarPizarra = document.getElementById('btn-cerrar-pizarra');
     const btnEntender = document.getElementById('btn-entender');

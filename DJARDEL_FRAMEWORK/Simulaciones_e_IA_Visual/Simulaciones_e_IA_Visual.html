@@ -8,15 +8,29 @@
     <link rel="stylesheet" href="Simulaciones_e_IA_Visual.CSS">
 </head>
 <body>
+
+    <!-- PIZARRA EXPLICATIVA SOBRE LA INTERFAZ: -->
+    <div id="pizarra-overlay" class="pizarra-overlay">
+        <div class="pizarra-contenido">
+            <button id="btn-cerrar-pizarra" class="btn-cerrar-pizarra">&times;</button>
+
+            <h1 class="titulo-modulo"> 👑 ¿En qué consiste Piter Monarca? 👑 </h1>
+
+            <h2 class="explicacion-titulo"> El objetivo principal es muy sencillo: ser el primero en alinear 4 fichas de tu color en una misma línea antes de que lo haga el REY DEL JUEGO PITER. </h2>
+            <p class="explicacion-p">✔️ Tú juegas con fichas rojas y siempre empiezas la partida. PITER juega con fichas azules.</p>
+            <p class="explicacion-p">✔️ En tu turno, haz clic en la columna donde quieras soltar tu ficha. La ficha caerá por gravedad hasta ocupar el espacio más bajo disponible en esa columna.</p>
+            <p class="explicacion-p">✔️ Ganas la partida si consigues conectar 4 fichas seguidas en cualquier dirección: horizontal, vertical o diagonal.</p>
+
+            <button id="btn-entender" class="boton-principal btn-entendido-pizarra">Entendido, ir al Juego</button>
+        </div>
+    </div>
+
     <header id="cabecera-juego">
         <a href="../Djardel_Framework.HTML" class="enlace-volver">&larr; Volver al Menú Principal</a>
         <h1 class="titulo-juego">Piter Monarca</h1>
         <p class="subtitulo-juego">Módulo de Simulación e Inteligencia Artificial Visual</p>
-        <h5 class="titulo-juego">¿En qué consiste Piter Monarca?</h5>
-        <p class="subtitulo-juego">El objetivo principal es muy sencillo: ser el primero en alinear 4 fichas de tu color en una misma línea antes de que lo haga el REY DEL JUEGO PITER.</p>
-        <P class="subtitulo-juego">Tú juegas con fichas rojas y siempre empiezas la partida. PITER juega con fichas azules.</P>
-        <P class="subtitulo-juego">En tu turno, haz clic en la columna donde quieras soltar tu ficha. La ficha caerá por gravedad hasta ocupar el espacio más bajo disponible en esa columna.</P>
-        <P class="subtitulo-juego">Ganas la partida si consigues conectar 4 fichas seguidas en cualquier dirección: horizontal, vertical o diagonal.</P>
+        <!-- BOTÓN PARA REABRIR LA PIZARRA EXPLICATIVA: -->
+        <button id="btn-abrir-pizarra" class="btn-ayuda-pizarra">❓ ¿Cómo funciona?</button>
     </header>
 
     <main id="contenedor-principal">

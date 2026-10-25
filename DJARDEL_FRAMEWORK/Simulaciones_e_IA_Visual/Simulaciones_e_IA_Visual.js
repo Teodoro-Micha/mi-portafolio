@@ -20,6 +20,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const textoResultado = document.getElementById('texto-resultado');
     const botonNuevaPartida = document.getElementById('boton-nueva-partida');
 
+    // PIZARRA EXPLICATIVA:
+    const pizarraOverlay = document.getElementById('pizarra-overlay');
+    const btnCerrarPizarra = document.getElementById('btn-cerrar-pizarra');
+    const btnEntender = document.getElementById('btn-entender');
+    const btnAbrirPizarra = document.getElementById('btn-abrir-pizarra');
+
+    // CONTROL DE LA PIZARRA EXPLICATIVA:
+    function cerrarPizarra() {
+        if (pizarraOverlay) {
+            pizarraOverlay.classList.add('oculto');
+        }
+    }
+
+    // Reabrir la pizarra explicativa:
+    function abrirPizarra() {
+        if (pizarraOverlay) {
+            pizarraOverlay.classList.remove('oculto'); 
+        }
+    }
+
+    if (btnCerrarPizarra) {
+        btnCerrarPizarra.addEventListener('click', cerrarPizarra);
+    }
+
+    if (btnEntender) {
+        btnEntender.addEventListener('click', cerrarPizarra);
+    }
+
+    // Evento para reabrir:
+    if (btnAbrirPizarra) {
+        btnAbrirPizarra.addEventListener('click', abrirPizarra);
+    }
+
+    // Cerrar la pizarra si el usuario hace clic fuera de la misma:
+    if (pizarraOverlay) {
+        pizarraOverlay.addEventListener('click', (e) => {
+            if (e.target === pizarraOverlay) {
+                cerrarPizarra(e);}
+        });
+    
+    }
+
+
 
     // TABLERO GRÁFICO:
     function crearTableroGrafico() {
