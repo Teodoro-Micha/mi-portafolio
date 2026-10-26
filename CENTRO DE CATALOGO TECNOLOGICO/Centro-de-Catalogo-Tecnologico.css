@@ -175,7 +175,7 @@ html, body {
     padding: 0;
 }
 
-/* Para que aplique los siguientes estilos solo cuando la pantalla mide 768px de ancho o menos: */
+/* INTERFAZ PARA MÓVILES: */
 @media (max-width: 768px) {
     .contenedor-app {
         flex-direction: column; 
@@ -190,6 +190,10 @@ html, body {
         width: 100%;
     }
     .cabecera-principal {
+        position: sticky !important;
+        top: 0 !important;
+        transform: none !important;
+        transition: none !important;
         height: auto !important;
         padding: 1rem !important;
     }
