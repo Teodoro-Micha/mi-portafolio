@@ -147,13 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             listaBoveda.appendChild(tarjeta);
 
-            // Vincular eventos a los botones generados:
-            activarEventosTarjetas();
         });
+
+        // Vincular eventos a los botones generados:
+        activarEventosTarjetas();
     }
 
     function activarEventosTarjetas() {
         // Copiar contraseña desde la tarjeta:
+        document.querySelectorAll('.btn-copiar-item').forEach(boton => {
+            boton.replaceWith(boton.cloneNode(true));
+        });
+
         document.querySelectorAll('.btn-copiar-item').forEach(boton => {
             boton.addEventListener('click', (e) => {
                 const passItem = e.target.getAttribute('data-pass');
@@ -165,6 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.target.textContent = textoPrevio;
                 }, 1500);
             });
+        });
+
+        // Limpiamos los botones de eliminar para evitar eventos duplicados:
+        document.querySelectorAll('.btn-eliminar-item').forEach(boton => {
+            boton.replaceWith(boton.cloneNode(true));
         });
 
 
