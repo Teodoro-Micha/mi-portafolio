@@ -99,3 +99,31 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+
+
+
+
+/* CONTENEDOR Y MENÚ ESCALABLE: */
+.contenedor-hub {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+    flex: 1;
+}
+
+.titulo-seccion {
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.rejilla-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+}
